@@ -1,9 +1,9 @@
-const ShopModel = require('../models/shop');
+const {UserModel} = require('../models/shop');
 
  const addUser = async (req, res) => {
   try {
     const user = req.body;
-    const result = await ShopModel.create(user)
+    const result = await UserModel.create(user)
     res.status(201).send(result)
   } catch (e) {
     console.log(ShopModel);
@@ -14,8 +14,8 @@ const ShopModel = require('../models/shop');
 
 const removeUser = async (req, res) => {
   try {
-    const userId = req.params;
-    const user = await ShopModel.findByIdAndRemove(userId.id);
+    const userId = req.params.id;
+    const user = await UserModel.findByIdAndRemove(userId);
     res.status(200).send(user);
   } 
   catch (e) {
@@ -26,9 +26,9 @@ const removeUser = async (req, res) => {
 
 const modifyUser = async (req, res) => {
   try {
-    const userId = req.params;
+    const userId = req.params.id;
     const modifiedUser = req.body
-    const user = await ShopModel.findByIdAndUpdate(userId.id, modifiedUser);
+    const user = await UserModel.findByIdAndUpdate(userId, modifiedUser);
     console.log(user);
     res.status(200).send(user);
   } 
@@ -40,8 +40,8 @@ const modifyUser = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    const userId = req.params;
-    const user = await ShopModel.findById(userId.id);
+    const userId = req.params.id;
+    const user = await UserModel.findById(userId);
     res.status(200).send(user);
   } 
   catch (e) {

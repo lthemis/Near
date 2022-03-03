@@ -7,7 +7,6 @@ router.get('/', (req, res) => {
   res.send('Hello World!')
 });
 
-
 // User routes
 router.post('/addUser', addUser);
 
@@ -20,11 +19,11 @@ router.get('/getUser/:id', getUser);
 // // Single item
 router.post('/addItem', addItem);
 
-// router.get('/getItem:id', getItem);
+router.get('/getItem/:id', getItem);
 
-// router.put('/modifyItem', modifyItem)
+router.put('/modifyItem/:id', modifyItem)
 
-// router.delete('/deleteItem:id', deleteItem)
+router.delete('/deleteItem/:id', deleteItem)
 
 // // Multiple items
 router.get('/getItems', getItems);
