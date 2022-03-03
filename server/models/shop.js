@@ -1,12 +1,12 @@
 const mongoose = require('./index')
-
+const { Schema } = mongoose;
 // const MapUserSchema = new mongoose.Schema({
 //   email: {type: String},
 //   userName: {type: String},
 //   userId: {type: Object}
 // })
 
-const ItemSchema = new mongoose.Schema({
+const ItemSchema = new Schema({
   itemName: {type: String, required: true},
   itemDesc: {type: String, required: true},
   itemPrice: {type: String, required: true},
@@ -20,7 +20,7 @@ const ItemSchema = new mongoose.Schema({
   buyerId: {type: mongoose.ObjectId}
 })
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   userName: {type: String},
   email: {type: String, required: true},
   password: {type: String, required: true},
@@ -41,7 +41,6 @@ const UserSchema = new mongoose.Schema({
 })
 
 const ShopModel = mongoose.model('Shop', UserSchema)
-
 
 module.exports = ShopModel
 

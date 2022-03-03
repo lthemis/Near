@@ -1,19 +1,21 @@
 const express = require('express')
 const router = express.Router()
 const {addItem, getItem, modifyItem, deleteItem, getItems} = require('../controllers/itemController.js');
-const {addUser, removeUser, getUser} = require('../controllers/userController');
+const {addUser, removeUser, getUser, modifyUser} = require('../controllers/userController');
 
 router.get('/', (req, res) => {
   res.send('Hello World!')
 });
 
 
-// Users
+// User routes
 router.post('/addUser', addUser);
 
-// router.post('/removeUser', removeUser);
+router.post('/removeUser/:id', removeUser);
 
-router.get('./getUser', getUser);
+router.put('/modifyUser/:id', modifyUser);
+
+router.get('/getUser/:id', getUser);
 
 // // Single item
 router.post('/addItem', addItem);
