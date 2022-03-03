@@ -1,10 +1,5 @@
 const mongoose = require('./index')
 const { Schema } = mongoose;
-// const MapUserSchema = new mongoose.Schema({
-//   email: {type: String},
-//   userName: {type: String},
-//   userId: {type: Object}
-// })
 
 const ItemSchema = new Schema({
   itemName: {type: String, required: true},
@@ -14,10 +9,8 @@ const ItemSchema = new Schema({
     longitude: {type: Number},
     latitude: {type: Number},
   },
-  // seller: MapUserSchema,
-  // buyer: MapUserSchema,
   sellerId:{type: mongoose.ObjectId},
-  buyerId: {type: mongoose.ObjectId}
+  buyerId: {type: mongoose.ObjectId},
 })
 
 const UserSchema = new Schema({
@@ -31,8 +24,6 @@ const UserSchema = new Schema({
     homeNum: {type: Number, required: true},
     zip: {type: Number, required: true},
   },
-  basket: [ItemSchema],
-  offer: [ItemSchema],
   wallet: {
     income: {type: Number, required: true},
     expenses: {type: Number, required: true},
@@ -40,27 +31,8 @@ const UserSchema = new Schema({
   rating: {type: Number, required: true}
 })
 
-const ShopModel = mongoose.model('Shop', UserSchema)
+const ItemModel = mongoose.model('Item', ItemSchema)
+const UserModel = mongoose.model('Shop', UserSchema)
 
-module.exports = ShopModel
+module.exports = { UserModel, ItemModel }
 
-
-// {
-//   "userName": "Lukasz",
-//   "email": "Tylke",
-//   "password": "abc",
-//   "address": {
-//     "country": "Germany",
-//     "city": "Berlin",
-//     "street": "Romanshorner Weg",
-//     "homeNum": 20,
-//     "zip": 13407
-//   },
-//   "wallet": {
-//     "basket": [],
-//     "offer": []
-//   },
-//   "income": 0,
-//   "expenses": 0,
-//   "rating": 0
-// }
