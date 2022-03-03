@@ -28,5 +28,8 @@ router.delete('/deleteItem/:id', deleteItem)
 // // Multiple items
 router.get('/getItems', getItems);
 
+router.all('*', (req, res) => {
+  res.status(404).send("404 - Not found")
+})
 
 module.exports = router;
