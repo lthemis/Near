@@ -16,7 +16,7 @@ router.put('/modifyUser/:id', modifyUser);
 
 router.get('/getUser/:id', getUser);
 
-// // Single item
+// // Item routes
 router.post('/addItem', addItem);
 
 router.get('/getItem/:id', getItem);
@@ -25,7 +25,6 @@ router.put('/modifyItem/:id', modifyItem)
 
 router.delete('/deleteItem/:id', deleteItem)
 
-// // Multiple items
 router.get('/getItems', getItems);
 
 router.all('*', (req, res) => {
