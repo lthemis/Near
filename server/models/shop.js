@@ -9,26 +9,31 @@ const ItemSchema = new Schema({
     longitude: {type: Number},
     latitude: {type: Number},
   },
+  categories: {
+    type: [String],
+    enum: ["Food", "Furniture", "Mobility", "Other"],
+    required: true
+  },
   sellerId:{type: mongoose.ObjectId},
   buyerId: {type: mongoose.ObjectId},
 })
 
 const UserSchema = new Schema({
-  userName: {type: String},
+  userName: {type: String, required: true},
   email: {type: String, required: true},
   password: {type: String, required: true},
   address: {
-    country: {type: String, required: true},
-    city: {type: String, required: true},
-    street: {type: String, required: true},
-    homeNum: {type: Number, required: true},
-    zip: {type: Number, required: true},
+    country: {type: String},
+    city: {type: String},
+    street: {type: String},
+    homeNum: {type: String},
+    zip: {type: String},
   },
   wallet: {
-    income: {type: Number, required: true},
-    expenses: {type: Number, required: true},
+    income: {type: Number},
+    expenses: {type: Number},
   },
-  rating: {type: Number, required: true}
+  rating: {type: Number}
 })
 
 const ItemModel = mongoose.model('Item', ItemSchema)

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const {addItem, getItem, modifyItem, deleteItem, getItems} = require('../controllers/itemController.js');
-const {addUser, removeUser, getUser, modifyUser} = require('../controllers/userController');
+const {addUser, removeUser, getUser, modifyUser, login, logout} = require('../controllers/userController');
 
 router.get('/', (req, res) => {
   res.send('Hello World!')
@@ -9,6 +9,10 @@ router.get('/', (req, res) => {
 
 // User routes
 router.post('/addUser', addUser);
+
+router.post('/login', login)
+
+router.post('/logout', logout)
 
 router.post('/removeUser/:id', removeUser);
 
