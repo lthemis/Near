@@ -1,10 +1,19 @@
-const { ShopModel, ItemModel } = require('../models/shop');
+const { UserModel, ItemModel } = require('../models/shop');
+const { forwardGeocoding } = require('../services/geocodingApi');
 
 async function addItem (req, res) {
   try {
-    const item = req.body;
+    const item = await req.body;
+    const userId = req.body.sellerId
+    const user = await UserModel.findById(userId);
+
+    console.log('itemControler', req.body, console.log('user', user));
+    const {latitude, longitude} = await forwardGeocoding(user.address);
+    item.location = {latitude: latitude, longitude:longitude}
+
     const result = await ItemModel.create(item);
     res.status(201).send(result)
+
   } catch(e) {
     console.log(e);
     res.status(500).end()

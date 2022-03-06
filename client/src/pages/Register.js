@@ -48,7 +48,7 @@ export const Register = () => {
       <input placeholder="Country" {...register("country")} />
       <input placeholder="City" {...register("city")} />
       <input placeholder="Street" {...register("street")} />
-      <input placeholder="Home number" {...register("num")} />
+      <input placeholder="Home number" {...register("homeNum")} />
       <input placeholder="Zip" {...register("zip")} />
       <button type="submit">Submit</button>
       {errors.username && <span>Username required</span>}

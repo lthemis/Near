@@ -3,7 +3,7 @@ const BASE_URL = 'http://localhost:3000'
 
 const postConfig = {
   method: 'POST',
-  credentials: 'include',
+  // credentials: 'include',
   mode: 'cors',
   headers: { 'Content-Type': 'application/json' },
 }
@@ -13,7 +13,7 @@ export const addUser = async (data) => {
   {
     method: 'POST',
     mode: 'cors',
-    // credentials: 'include',
+    credentials: 'include',
     headers: {
       'Content-Type':'application/json'
     },

@@ -9,10 +9,16 @@ const session = require('express-session');
 const SECRET = process.env.SECRET
 
 const corsConfig = {
+  // origin: true,
+
+  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
   origin: 'http://localhost:3001',
   credentials: true,
 }
+app.options('/addUser', cors())
 app.use(cors(corsConfig))
+// app.options('*', cors())
+app.use(bodyParser.json());
 
 app.use(
   session({
@@ -31,7 +37,6 @@ app.use(
   })
 );
 
-app.use(bodyParser.json());
 app.use(router);
 
 app.listen(SERVER_PORT, (err) => {
