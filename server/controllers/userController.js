@@ -1,4 +1,6 @@
 const {UserModel} = require('../models/shop');
+const { forwardGeocoding } = require('../services/geocodingApi');
+
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -12,6 +14,9 @@ const saltRounds = 10;
         .status(409)
         .send({ error: '409', message: 'User already exists' });
 
+    const {latitude, longitude} = await forwardGeocoding(user.address);
+    user.location = {latitude: latitude, longitude:longitude}
+    
     const hashedPassword = await bcrypt.hash(user.password, saltRounds)
     console.log(hashedPassword);
     const userEncrypted = {

@@ -29,6 +29,10 @@ const UserSchema = new Schema({
     homeNum: {type: String},
     zip: {type: String},
   },
+  location: {
+    longitude: {type: Number},
+    latitude: {type: Number},
+  },
   wallet: {
     income: {type: Number},
     expenses: {type: Number},
