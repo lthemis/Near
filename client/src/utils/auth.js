@@ -18,15 +18,19 @@ export const AuthProvider = ({children}) => {
     removeCookie("userId")
   }
 
+  const getUserFromSession = () => {
+    return cookies['userId']
+  }
+
   const checkIfAuthenticated = () => {
-    console.log('cookies console22', cookies['userId']);
-    const authCookie = cookies['userId']
+    // const authCookie = cookies['userId']
+    const authCookie = getUserFromSession()
     if(authCookie) return true;
   }
 
 
   // inseted of userID put function checkifauth
-  return <AuthContext.Provider value={{checkIfAuthenticated, login, logout}}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{checkIfAuthenticated, getUserFromSession, login, logout}}>{children}</AuthContext.Provider>
   // return <AuthContext.Provider value={{checkIfAuthenticated, login, logout}}>{children}</AuthContext.Provider>
 }
 
