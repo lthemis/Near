@@ -24,14 +24,15 @@ function App() {
 
       <Routes>
 
-        <Route path="home" element={<LandingPage />} >
-          <Route index element={<LandingPage />} />  
+        <Route path="/" element={<LandingPage />} >
+          {/* <Route index element={<LandingPage />} />   */}
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
         <Route path="/store" element={<RequireAuth><Store /></RequireAuth>}>
         </Route>
-        <Route path="/item/:itemId" element={<ItemDetails></ItemDetails>}></Route>
+        <Route path="/store/:itemId" element={<ItemDetails></ItemDetails>}></Route>
+
         <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
 
       </Routes>

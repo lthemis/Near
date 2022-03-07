@@ -2,10 +2,12 @@ import React from 'react'
 import { useAuth } from '../utils/auth';
 import { FieldValues, useForm, SubmitHandler  } from "react-hook-form";
 import { addItem } from '../services/ApiService';
+import { useNavigate } from 'react-router-dom';
 
 export const ItemForm = () => {
   const auth = useAuth();
-  console.log(auth);
+  const navigate = useNavigate()
+
   const { register, handleSubmit, formState: { errors }, reset} = useForm({
     defaultValues: {
       itemName: "",
@@ -25,7 +27,8 @@ export const ItemForm = () => {
     };
     console.log(newItem);
     addItem(newItem)
-    // reset()
+    reset()
+    navigate('/store', {replace:true})
   }
 
   return (

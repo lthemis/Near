@@ -11,7 +11,7 @@ export const Item = (props) => {
         <p>{item.categories}</p>
       </div>
       <img src={item.photoUrl} alt="itemPhoto"></img>
-      <Link to={`/${item._id}`}>Product details</Link>
+      <Link to={`/store/${item._id}`}>Product details</Link>
     </div>
   )
 }
