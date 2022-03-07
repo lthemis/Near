@@ -3,6 +3,7 @@ import { Logout } from '../components/Logout'
 import { ItemForm } from '../components/ItemForm';
 import { getUser } from '../services/ApiService';
 import { useAuth } from '../utils/auth';
+import { Chart } from '../components/Chart';
 
 export const Profile = () => {
   const auth = useAuth()
@@ -27,6 +28,7 @@ export const Profile = () => {
         <p>Income: {user.wallet.income}</p>
         <p>Expenses: {user.wallet.expenses}</p>
         <ItemForm></ItemForm>
+        <Chart income={user.wallet.income} expenses={user.wallet.expenses}></Chart>
       </div>
         : null}
     </div>

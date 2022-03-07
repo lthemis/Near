@@ -33,8 +33,11 @@ export const ItemDetails = () => {
       <p>{item.itemPrice}</p>
       <p>{item.sellerId}</p>
       <button onClick={clickHandler}>Buy</button>
-      <MapComponent items={item}></MapComponent>
-
+      { Object.keys(item).length !== 0  ?
+        <MapComponent items={item}></MapComponent>
+      :
+      null
+      }
     </div>
   )
 }

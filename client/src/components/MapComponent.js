@@ -5,7 +5,7 @@ import { useAuth } from '../utils/auth'
 import './MapComponent.css'
 import { Link } from 'react-router-dom';
 import { Tag } from './Tag';
-
+import RoutingMachine from './RoutingMachine';
 
 export const MapComponent = ({items}) => {
   const auth = useAuth()
@@ -23,6 +23,7 @@ export const MapComponent = ({items}) => {
 
   return (
     <div>
+      {console.log(user.location,items.location)}
       {Object.keys(user).length !== 0 ?
       <MapContainer className={'mapContainer'} center={[user.location.latitude, user.location.longitude]} zoom={13}>
         <TileLayer
@@ -32,7 +33,10 @@ export const MapComponent = ({items}) => {
           { Array.isArray(items) ?
           items.map((item) => {
             return <Tag key={item._id} item={item}/> 
-          }) : <Tag item={items}/> 
+          }) : 
+          <Tag item={items}/> 
+          && 
+          <RoutingMachine userLocation={user.location} itemLocation={items.location}/>
         }
       </MapContainer>
       : null }
