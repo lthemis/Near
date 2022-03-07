@@ -1,11 +1,13 @@
 import React,{useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { deleteItem, getItem } from '../services/ApiService'
-
+import { useAuth } from '../utils/auth'
 
 export const ItemDetails = () => {
   const [item, setItem] = useState({})
   const { itemId } = useParams()
+  const auth = useAuth()
+  const userId = auth.getUserFromSession()
 
   useEffect( () => {
     const fetchData = async () => {
@@ -16,7 +18,9 @@ export const ItemDetails = () => {
   },[])
 
   const clickHandler = async () => {
-    const result = deleteItem(itemId)
+    console.log(itemId, userId);
+    const result = await deleteItem(itemId, userId)
+    console.log(result);
   }
 
   return (

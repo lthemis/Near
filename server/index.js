@@ -9,29 +9,24 @@ const session = require('express-session');
 const SECRET = process.env.SECRET
 
 const corsConfig = {
-  origin: true,
-
-  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
-  // origin: 'http://localhost:3000',
+  origin: 'http://localhost:3001',
   credentials: true,
 }
-app.options('/addUser', cors())
+
 app.use(cors(corsConfig))
-// app.options('*', cors())
 app.use(bodyParser.json());
+
 
 app.use(
   session({
-    // the store property, if not specified, defaults to the in-memory store
     name: 'sid',
     saveUninitialized: false,
     resave: false,
     secret: SECRET,
     cookie: {
-      maxAge: 1000 * 60 * 60, // 1hr
+      maxAge: 1000 * 60 * 60, 
       sameSite: true,
       httpOnly: false,
-      // we would want to set secure=true in a production environment
       secure: false,
     },
   })

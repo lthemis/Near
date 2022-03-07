@@ -113,8 +113,10 @@ export const getItem = async (id) => {
     return data});
 }
 
-export const deleteItem = async (id) => {
-  return await fetch(`${BASE_URL}/deleteItem/${id}`, 
+export const deleteItem = (itemId, buyerId) => {
+  // return await fetch(`${BASE_URL}/deleteItem/?id=${itemId}&bid=${buyerId}`, // query string 
+  // return await fetch(`${BASE_URL}/deleteItem/${itemId}`, 
+  return fetch(`${BASE_URL}/deleteItem`, 
   {
     method: 'DELETE',
     mode: 'cors',
@@ -122,6 +124,7 @@ export const deleteItem = async (id) => {
     headers: {
       'Content-Type':'application/json'
     },
+    body: JSON.stringify({itemId,buyerId})
   })
   .then(response => {
     if( response.status < 300) {
@@ -130,5 +133,5 @@ export const deleteItem = async (id) => {
       console.log('error', response.status);
       return new Error(`There was an error`)
     }
-  })
+  }).catch(e => console.log(e));
 }

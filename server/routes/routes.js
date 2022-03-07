@@ -27,7 +27,9 @@ router.get('/getItem/:id', getItem);
 
 router.put('/modifyItem/:id', modifyItem)
 
-router.delete('/deleteItem/:id', deleteItem)
+// router.delete('/deleteItem/:id', deleteItem)
+router.delete('/deleteItem', deleteItem)
+
 
 router.get('/getItems', getItems);
 

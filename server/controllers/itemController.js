@@ -48,24 +48,19 @@ async function modifyItem(req, res){
 async function deleteItem(req, res){
   console.log('reached controller - delete');
   try {
-    const itemId= req.params.id;
-    const itemData = await ItemModel.findById(itemId);
-    const user = await UserModel.findById(itemData.sellerId);
-    console.log('del controller', itemData);
-    // user.wallet = {income: user.income + itemData.itemPrice}
+    // const itemId= req.params.id;
+    const {itemId, buyerId} = req.body;
+    console.log('BE',itemId, buyerId);
 
-    user.wallet = user.wallet ? 
-      {...user.wallet, income: user.income + itemData.itemPrice}
-      : {income: user.income + itemData.itemPrice};
-      
-    console.log(user);
-    // console.log('user', user);
-    // const result = await ItemModel.findByIdAndDelete(itemId);
-    // console.log(result);
-    res.status(200).send('success')
+    // const itemData = await ItemModel.findById(itemId);
+    // const user = await UserModel.findById(itemData.sellerId);
+    // user.wallet.income = user.wallet.income + Number(itemData.itemPrice);
+    // const updatedUser = await UserModel.findByIdAndUpdate(user._id, {wallet:user.wallet})
+    // console.log(buyerId);
+    res.status(200).send({data: 'success'})
   } catch (e) {
     console.log(e);
-    res.status(500).end()
+    res.status(500).send({error: e})
   }
 }
 
