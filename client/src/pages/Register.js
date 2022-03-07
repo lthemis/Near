@@ -1,9 +1,10 @@
 import React from 'react'
 import { FieldValues, useForm, SubmitHandler  } from "react-hook-form";
 import { addUser } from '../services/ApiService';
+import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
-
+  const navigate = useNavigate() 
   const { register, handleSubmit, formState: { errors }, reset} = useForm({
     defaultValues: {
       username: "",
@@ -36,6 +37,7 @@ export const Register = () => {
     }
     addUser(user).then(response => console.log('r', response)); //set setate = if typeof res is error and return the user 
     reset()
+    navigate('/store', {replace:true})
   }
 
   return (

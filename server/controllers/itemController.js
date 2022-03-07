@@ -48,7 +48,6 @@ async function modifyItem(req, res){
 async function deleteItem(req, res){
   console.log('reached controller - delete');
   try {
-    // const itemId= req.params.id;
     const {itemId, buyerId} = req.body;
     console.log('BE',itemId, buyerId);
 
@@ -57,8 +56,8 @@ async function deleteItem(req, res){
     const buyer = await UserModel.findById(buyerId);
     seller.wallet.income = seller.wallet.income + Number(itemData.itemPrice);
     buyer.wallet.expenses = buyer.wallet.expenses + Number(itemData.itemPrice);
-    const updatedSeller = await UserModel.findByIdAndUpdate(seller._id, {wallet:seller.wallet})
-    const updatedBuyer = await UserModel.findByIdAndUpdate(buyer._id, {wallet:buyer.wallet})
+    await UserModel.findByIdAndUpdate(seller._id, {wallet:seller.wallet})
+    await UserModel.findByIdAndUpdate(buyer._id, {wallet:buyer.wallet})
     const removedItem = await ItemModel.findByIdAndDelete(itemId)
     
     res.status(200).send(removedItem)

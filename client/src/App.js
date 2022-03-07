@@ -21,15 +21,19 @@ function App() {
 
       <Navbar>
       </Navbar>
+
       <Routes>
-        <Route path="/" element={<LandingPage />} >
+
+        <Route path="home" element={<LandingPage />} >
+          <Route index element={<LandingPage />} />  
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
-        <Route path="store" element={<RequireAuth><Store /></RequireAuth>}>
+        <Route path="/store" element={<RequireAuth><Store /></RequireAuth>}>
         </Route>
-        <Route path=":itemId" element={<ItemDetails></ItemDetails>}></Route>
-        <Route path="profile" element={<RequireAuth><Profile /></RequireAuth>} />
+        <Route path="/item/:itemId" element={<ItemDetails></ItemDetails>}></Route>
+        <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
+
       </Routes>
     </AuthProvider>
 

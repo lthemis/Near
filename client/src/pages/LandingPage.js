@@ -1,12 +1,16 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom';
+import { Login } from './Login';
+import { Register } from './Register';
 
 export const LandingPage = () => {
   return (
     <div>LandingPage
-      <Link to={'/register'}>Register</Link>
+      {/* <Link to={'/register'}>Register</Link>
       <Link to={'/login'}>Login</Link>
-      <Outlet></Outlet>
+      <Outlet></Outlet> */}
+      {/* <Login></Login> */}
+      {/* <Register></Register> */}
     </div>
   )
 }
