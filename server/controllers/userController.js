@@ -6,6 +6,7 @@ const saltRounds = 10;
 
 
  const addUser = async (req, res) => {
+   console.log('add user controller');
   try {
     const user = req.body;
     const userCheck = await UserModel.findOne({ email: user.email });
@@ -25,8 +26,8 @@ const saltRounds = 10;
     console.log('ue',userEncrypted);
     const result = await UserModel.create(userEncrypted)
     req.session.uid = result._id;
-    res.header("Access-Control-Allow-Origin", "http://localhost:3001");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    // res.header("Access-Control-Allow-Origin", "http://localhost:3001");
+    // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.status(201).send(result)
   } catch (e) {
     console.log(e);

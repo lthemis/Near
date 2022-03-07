@@ -5,7 +5,7 @@ import { Navbar } from './pages/Navbar';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Store } from './pages/Store';
-import { Item } from './pages/Item';
+import { ItemDetails } from './pages/ItemDetails';
 import { Profile} from './pages/Profile';
 import React, { useState } from 'react';
 import { AuthProvider } from './utils/auth';
@@ -20,7 +20,6 @@ function App() {
     <AuthProvider>
 
       <Navbar>
-        <Logout></Logout>
       </Navbar>
       <Routes>
         <Route path="/" element={<LandingPage />} >
@@ -28,8 +27,8 @@ function App() {
           <Route path="register" element={<Register />} />
         </Route>
         <Route path="store" element={<RequireAuth><Store /></RequireAuth>}>
-          <Route path=":itemId" element={<Item></Item>}></Route>
         </Route>
+        <Route path=":itemId" element={<ItemDetails></ItemDetails>}></Route>
         <Route path="profile" element={<RequireAuth><Profile /></RequireAuth>} />
       </Routes>
     </AuthProvider>

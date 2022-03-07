@@ -28,6 +28,10 @@ export const Register = () => {
         street: data.street,
         homeNum: data.homeNum,
         zip: data.zip
+      },
+      wallet: {
+        income: 0,
+        expenses: 0
       }
     }
     addUser(user).then(response => console.log('r', response)); //set setate = if typeof res is error and return the user 

@@ -3,9 +3,9 @@ const router = express.Router()
 const {addItem, getItem, modifyItem, deleteItem, getItems} = require('../controllers/itemController.js');
 const {addUser, removeUser, getUser, modifyUser, login, logout} = require('../controllers/userController');
 
-router.get('/', (req, res) => {
-  res.send('Hello World!')
-});
+// router.get('/', (req, res) => {
+//   res.send('Hello World!')
+// });
 
 // User routes
 router.post('/addUser', addUser);

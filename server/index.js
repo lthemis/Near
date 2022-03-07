@@ -9,10 +9,10 @@ const session = require('express-session');
 const SECRET = process.env.SECRET
 
 const corsConfig = {
-  // origin: true,
+  origin: true,
 
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
-  origin: 'http://localhost:3001',
+  // origin: 'http://localhost:3000',
   credentials: true,
 }
 app.options('/addUser', cors())

@@ -5,6 +5,7 @@ const ItemSchema = new Schema({
   itemName: {type: String, required: true},
   itemDesc: {type: String, required: true},
   itemPrice: {type: String, required: true},
+  photoUrl: {type: String},
   location: {
     longitude: {type: Number},
     latitude: {type: Number},

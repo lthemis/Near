@@ -1,3 +1,4 @@
+const { isRequired } = require('nodemon/lib/utils');
 const { UserModel, ItemModel } = require('../models/shop');
 const { forwardGeocoding } = require('../services/geocodingApi');
 
@@ -24,9 +25,7 @@ async function getItem(req, res) {
   try {
     const itemId = req.params.id;
     const result = await ItemModel.findById(itemId);
-
-    console.log(result);
-    res.status(200).end()
+    res.status(200).send(result)
   } catch (e) {
     console.log(e);
     res.status(500).end()
@@ -47,11 +46,23 @@ async function modifyItem(req, res){
 }
 
 async function deleteItem(req, res){
+  console.log('reached controller - delete');
   try {
     const itemId= req.params.id;
-    const result = await ItemModel.findByIdAndDelete(itemId);
-    console.log(result);
-    res.status(200).end()
+    const itemData = await ItemModel.findById(itemId);
+    const user = await UserModel.findById(itemData.sellerId);
+    console.log('del controller', itemData);
+    // user.wallet = {income: user.income + itemData.itemPrice}
+
+    user.wallet = user.wallet ? 
+      {...user.wallet, income: user.income + itemData.itemPrice}
+      : {income: user.income + itemData.itemPrice};
+      
+    console.log(user);
+    // console.log('user', user);
+    // const result = await ItemModel.findByIdAndDelete(itemId);
+    // console.log(result);
+    res.status(200).send('success')
   } catch (e) {
     console.log(e);
     res.status(500).end()

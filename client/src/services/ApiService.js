@@ -1,12 +1,13 @@
+
 const BASE_URL = 'http://localhost:3000'
 
 
-const postConfig = {
-  method: 'POST',
-  // credentials: 'include',
-  mode: 'cors',
-  headers: { 'Content-Type': 'application/json' },
-}
+// const postConfig = {
+//   method: 'POST',
+//   // credentials: 'include',
+//   mode: 'cors',
+//   headers: { 'Content-Type': 'application/json' },
+// }
 
 export const addUser = async (data) => {
   return await fetch(`${BASE_URL}/addUser`, 
@@ -79,5 +80,55 @@ export const addItem = async (data) => {
       console.log('error', response.status);
       return new Error(`There was an error`)
     }
-   })
+  })
+}
+
+export const getItems = async () => {
+  return await fetch(`${BASE_URL}/getItems`)
+    .then(response => {
+      if( response.status < 300) {
+        return response.json()
+      } else {
+        console.log('error', response.status);
+        return new Error(`There was an error`)
+      }
+  })
+  .then(data => {
+    console.log('datainfetch', data);
+    return data});
+}
+
+export const getItem = async (id) => {
+  return await fetch(`${BASE_URL}/getItem/${id}`)
+    .then(response => {
+      if( response.status < 300) {
+        return response.json();
+      } else {
+        console.log('error', response.status);
+        return new Error(`There was an error`)
+      }
+  })
+  .then(data => {
+    console.log('datainfetch', data);
+    return data});
+}
+
+export const deleteItem = async (id) => {
+  return await fetch(`${BASE_URL}/deleteItem/${id}`, 
+  {
+    method: 'DELETE',
+    mode: 'cors',
+    // credentials: 'include',
+    headers: {
+      'Content-Type':'application/json'
+    },
+  })
+  .then(response => {
+    if( response.status < 300) {
+      return response.json()
+    } else {
+      console.log('error', response.status);
+      return new Error(`There was an error`)
+    }
+  })
 }
