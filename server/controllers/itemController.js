@@ -52,12 +52,16 @@ async function deleteItem(req, res){
     const {itemId, buyerId} = req.body;
     console.log('BE',itemId, buyerId);
 
-    // const itemData = await ItemModel.findById(itemId);
-    // const user = await UserModel.findById(itemData.sellerId);
-    // user.wallet.income = user.wallet.income + Number(itemData.itemPrice);
-    // const updatedUser = await UserModel.findByIdAndUpdate(user._id, {wallet:user.wallet})
-    // console.log(buyerId);
-    res.status(200).send({data: 'success'})
+    const itemData = await ItemModel.findById(itemId);
+    const seller = await UserModel.findById(itemData.sellerId);
+    const buyer = await UserModel.findById(buyerId);
+    seller.wallet.income = seller.wallet.income + Number(itemData.itemPrice);
+    buyer.wallet.expenses = buyer.wallet.expenses + Number(itemData.itemPrice);
+    const updatedSeller = await UserModel.findByIdAndUpdate(seller._id, {wallet:seller.wallet})
+    const updatedBuyer = await UserModel.findByIdAndUpdate(buyer._id, {wallet:buyer.wallet})
+    const removedItem = await ItemModel.findByIdAndDelete(itemId)
+    
+    res.status(200).send(removedItem)
   } catch (e) {
     console.log(e);
     res.status(500).send({error: e})

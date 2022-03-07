@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { deleteItem, getItem } from '../services/ApiService'
 import { useAuth } from '../utils/auth'
 
@@ -7,6 +7,7 @@ export const ItemDetails = () => {
   const [item, setItem] = useState({})
   const { itemId } = useParams()
   const auth = useAuth()
+  const navigate = useNavigate()
   const userId = auth.getUserFromSession()
 
   useEffect( () => {
@@ -21,6 +22,7 @@ export const ItemDetails = () => {
     console.log(itemId, userId);
     const result = await deleteItem(itemId, userId)
     console.log(result);
+    navigate('/store', { replace: true })
   }
 
   return (

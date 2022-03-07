@@ -114,8 +114,6 @@ export const getItem = async (id) => {
 }
 
 export const deleteItem = (itemId, buyerId) => {
-  // return await fetch(`${BASE_URL}/deleteItem/?id=${itemId}&bid=${buyerId}`, // query string 
-  // return await fetch(`${BASE_URL}/deleteItem/${itemId}`, 
   return fetch(`${BASE_URL}/deleteItem`, 
   {
     method: 'DELETE',
