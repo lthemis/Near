@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { deleteItem, getItem } from '../services/ApiService'
 import { useAuth } from '../utils/auth'
+import { MapComponent } from '../components/MapComponent';
 
 export const ItemDetails = () => {
   const [item, setItem] = useState({})
@@ -32,6 +33,8 @@ export const ItemDetails = () => {
       <p>{item.itemPrice}</p>
       <p>{item.sellerId}</p>
       <button onClick={clickHandler}>Buy</button>
+      <MapComponent items={item}></MapComponent>
+
     </div>
   )
 }
