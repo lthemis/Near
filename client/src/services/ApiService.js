@@ -30,6 +30,18 @@ export const addUser = async (data) => {
    })
 }
 
+export const getUser = (id) => {
+  return fetch(`${BASE_URL}/getUser/${id}`, )
+    .then(response => {
+      if( response.status < 300) {
+        return response.json()
+      } else {
+        console.log('error', response.status);
+        return new Error(`There was an error`)
+      }
+  }).catch(e => console.log(e));
+}
+
 export const loginUser = async (data) => {
   return await fetch(`${BASE_URL}/login`, 
   {

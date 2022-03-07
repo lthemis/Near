@@ -15,12 +15,15 @@ export const Store = () => {
     fetchData()
   },[])
 
+
   return (
     <div>
       {items.map(item => {
         console.log('store item',item);
         return <Item key={item._id} item={item}></Item>
       })} 
+
+      
     </div>
   )
 }

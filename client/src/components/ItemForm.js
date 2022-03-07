@@ -32,7 +32,8 @@ export const ItemForm = () => {
   }
 
   return (
-    <div>ItemForm
+    <div>
+      <h2>Add new item:</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <input placeholder="Item" {...register("itemName", 

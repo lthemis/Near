@@ -36,6 +36,7 @@ function App() {
         <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
 
       </Routes>
+
     </AuthProvider>
 
     </div>
