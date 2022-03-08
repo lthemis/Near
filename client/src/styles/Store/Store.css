@@ -1,5 +1,4 @@
 .storeContainer {
-  border: 2rem solid red;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12,12 +11,17 @@
 }
 
 .storeContainer .listContainer {
-  border: 2px solid green;
   width: 40vw;
   height: 100%;
 }
 
+.storeContainer .listContainer .filterAreaContainer {
+  border: 2px solid #FD6584;
+  border-radius: 10px;
+}
+
 .storeContainer .listContainer .filterAreaContainer .filtersContainer {
+  margin: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -43,6 +47,24 @@
           justify-content: center;
 }
 
+.storeContainer .listContainer .filterAreaContainer .checkboxContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.storeContainer .listContainer .filterAreaContainer .checkboxContainer > * {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .storeContainer .listContainer .filterAreaContainer .searchBarContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -50,15 +72,44 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  height: 2.5vh;
+  margin: 1rem;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.storeContainer .listContainer .filterAreaContainer .searchBarContainer input {
+  width: 80%;
+  font-family: "Lato", sans-serif;
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 10px;
+}
+
+.storeContainer .listContainer .filterAreaContainer .searchBarContainer input:focus, .storeContainer .listContainer .filterAreaContainer .searchBarContainer input:hover {
+  -webkit-box-shadow: 0px 0px 12px 2px rgba(253, 101, 132, 0.53);
+          box-shadow: 0px 0px 12px 2px rgba(253, 101, 132, 0.53);
+}
+
+.storeContainer .listContainer .filterAreaContainer .searchBarContainer label {
+  line-height: 29px;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 
 .storeContainer .mapContainer {
-  border: 2px solid yellow;
   width: 40vw;
 }
 
 .listItemContainer {
   overflow: scroll;
   height: 80vh;
+}
+
+.checkboxLabel, .distanceLabel {
+  line-height: 29px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  font: "Lato", sans-serif;
 }
 /*# sourceMappingURL=Store.css.map */

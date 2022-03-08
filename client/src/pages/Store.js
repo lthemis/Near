@@ -79,11 +79,10 @@ export const Store = (props) => {
     <div className='storeContainer'>
 
       <div className='listContainer'>
-        Filters:
         <div className="filterAreaContainer">
           <div className="filtersContainer">
             <div className="rangeFilterContainer">
-              <label for='range'>Distance: {selectedDistance}</label>
+              <label className="distanceLabel"  for='range'>Distance: {selectedDistance}</label>
               <input
                 onChange={handleDistanceFilter}
                 type='range'
@@ -96,19 +95,19 @@ export const Store = (props) => {
 
             <div className='checkboxContainer'>
               <div>
-                <label for="Food">Food</label>
+                <label className="checkboxLabel" for="Food">Food</label>
                 <input type="checkbox" name="Food"></input>
               </div>
               <div>
-                <label for="Furniture">Furniture</label>
+                <label className="checkboxLabel" for="Furniture">Furniture</label>
                 <input type="checkbox" name="Furniture"></input>
               </div>            
               <div>
-                <label for="Mobility">Mobility</label>
+                <label className="checkboxLabel" for="Mobility">Mobility</label>
                 <input type="checkbox" name="Mobility"></input>
               </div>            
               <div>
-                <label for="Other">Other</label>
+                <label className="checkboxLabel" for="Other">Other</label>
                 <input type="checkbox" name="Other"></input>
               </div>
             </div>
@@ -118,12 +117,8 @@ export const Store = (props) => {
             <label for="search">Search</label>
             <input name="search" type="text"></input>
           </div>
-
-
         </div>
         
-        List:
-
         <div className="listItemContainer" style={{overflow: "scroll", height: "80vh"}}>
           {items
             .filter(item => item.distance <= selectedDistance)
