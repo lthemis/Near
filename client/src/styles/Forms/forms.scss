@@ -1,0 +1,97 @@
+@import "../variables//variables.scss";
+
+@mixin formStyle {
+  button {
+    background-color: $secondaryColor;
+    padding: 1rem;
+    margin: 1rem;
+    font-size: 1.5rem;
+    font-family: $font;
+    color: $primaryColor;
+    width: 15rem;
+    border-radius:10px;
+    &:hover {
+      border: 2px solid $supportSecondaryColor;
+      & :active {
+        transform: scale(2);
+      }
+    }
+  }
+
+  label {
+    font-weight: 700;
+    padding: 0.5rem;
+    color: $supportPrimaryColor;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.1rem;
+  }
+  
+  .inputError {
+    font-size: 0.8rem;
+    color: $brandColor;
+  }
+
+  input {
+    font-family: $font;
+    width: 30vw;
+    padding: 1rem;
+    margin:0.5rem;
+    // border: 0.2rem solid 5px $supportPrimaryColor;
+    border-radius:10px;
+
+    &:focus, &:hover {
+      box-shadow:0px 0px 12px 2px rgba(253,101,132,0.53);
+    }
+  }
+}
+
+.registerForm {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  @include formStyle;
+}
+
+.loginForm {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include formStyle
+}
+
+.btnRegister {
+  flex-basis: 100%;
+  justify-content: center;
+  display: flex;
+}
+// form {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   align-self: center;
+//   justify-self: center;
+//   flex-direction: column;
+//   // flex-wrap: column;
+//   // color: red;
+//   height: 60vh;
+//   width: 80vw;
+
+//   label {
+//     padding: 1rem;
+//     input {
+//       width: 30em;
+//       line-height: 3em;
+//     }
+//   }
+  
+  // input {
+  //   height: 2rem;
+  //   padding: 10px;
+  // }
+  // button {
+  //   height: 2rem;
+  // }
+// }

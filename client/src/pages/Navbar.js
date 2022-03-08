@@ -1,7 +1,6 @@
 import React from 'react'
 import { Logout } from '../components/Logout';
 import { Link, NavLink, Outlet } from 'react-router-dom';
-import './NavBar.css';
 import { useAuth } from '../utils/auth';
 import '../styles/Navbar/Navbar.css';
 
@@ -10,6 +9,7 @@ export const Navbar = () => {
 
   const path = auth.checkIfAuthenticated() ? "store" : "/";
 
+  // wrap navlinks in li elements, divs uls
   return (
     <nav className="navContainer">
         <NavLink to={`${path}`}>

@@ -3,11 +3,12 @@
 
 
 img {
-  width: 15rem;
+  width: 20rem;
   height: auto;
 }
 
 .navContainer {
+  height: 10wh;
   font-family: $font;
   font-weight: $fontWeight;
   font-size: 1.5rem;
@@ -26,3 +27,4 @@ img {
     }
   }
 }
+

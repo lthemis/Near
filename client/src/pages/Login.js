@@ -3,6 +3,7 @@ import { FieldValues, useForm, SubmitHandler  } from "react-hook-form";
 import { loginUser } from '../services/ApiService';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../utils/auth';
+import '../styles/Forms/forms.css'
 
 export const Login = () => {
   console.log('LOGIN COMPONENT');
@@ -28,15 +29,21 @@ export const Login = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input placeholder="Email" {...register("email", 
-      { required: true }
-      )} />
-      <input placeholder="Password" type="password" {...register("password", 
-      { required: true }
-      )} />
-      {errors.email && <span>Email required</span>}
-      {errors.password && <span>Password required</span>}
+    <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="email">
+        <input name="email" placeholder="Email" {...register("email", 
+        { required: true }
+        )} />
+        {errors.email && <span className="inputError">Email required</span>}
+      </label>
+
+      <label htmlFor="password">
+        <input name="password" placeholder="Password" type="password" {...register("password", 
+        { required: true }
+        )} />
+      {errors.password && <span className="inputError">Password required</span>}
+      </label>
+      
       <button type="submit">Submit</button>
     </form>
   )
