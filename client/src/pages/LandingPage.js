@@ -4,14 +4,9 @@ import { Login } from './Login';
 import { Register } from './Register';
 export const LandingPage = () => {
   return (
-    <div>LandingPage
-      {/* <Link to={'/register'}>Register</Link>
-      <Link to={'/login'}>Login</Link>
-      <Outlet></Outlet> */}
-      {/* <Login></Login> */}
-      {/* <Register></Register> */}
+    <div>
+      <h1>~TEST</h1>
       <Outlet></Outlet>
-
     </div>
   )
 }

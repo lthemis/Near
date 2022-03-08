@@ -1,0 +1,21 @@
+.homeContainer {
+  position: relative;
+  height: 80vh;
+  bottom: -20vh;
+}
+
+.homeContainer .bcgSvg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.homeContainer .mainSvg {
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+/*# sourceMappingURL=Home.css.map */

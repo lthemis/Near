@@ -77,7 +77,7 @@ export const Store = () => {
         return <Item key={item._id} item={item}></Item>
       })} 
       </div>
-      <MapComponent items={items}></MapComponent>
+      <MapComponent items={items.filter(item => item.distance <= selectedDistance)}></MapComponent>
       
     </div>
   )

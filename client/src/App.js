@@ -11,7 +11,7 @@ import React, { useState } from 'react';
 import { AuthProvider } from './utils/auth';
 import { Logout } from './components/Logout'
 import { RequireAuth } from './components/RequireAuth';
-
+import { Home } from './pages/Home';
 
 function App() {
 
@@ -23,12 +23,19 @@ function App() {
       </Navbar>
 
       <Routes>
-
+{/* 
         <Route path="/" element={<LandingPage />} >
-          {/* <Route index element={<LandingPage />} />   */}
+          <Route path="home" element={<Home />} />  
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-        </Route>
+        </Route> */}
+
+
+        <Route path="/" element={<Home />} ></Route>
+          {/* <Route path="home" element={<Home />} />   */}
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+        
         <Route path="/store" element={<RequireAuth><Store /></RequireAuth>}>
         </Route>
         <Route path="/store/:itemId" element={<ItemDetails></ItemDetails>}></Route>

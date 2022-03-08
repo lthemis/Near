@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { CookiesProvider } from "react-cookie";
+import './styles/base/base.css'
 
 ReactDOM.render(
   <CookiesProvider>
