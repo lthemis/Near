@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import "../styles/Item/Item.css"
 
 export const Item = (props) => {
   const item = props.item;
   return (
-    <div> This is item
+    <div className='itemContainer'> This is item
       <div>
         <h1>{item.itemName}</h1>
         <p>{item.itemPrice}</p>

@@ -15,6 +15,8 @@ import { Home } from './pages/Home';
 
 function App() {
 
+  const [lastItem, setLastItem] = useState({})
+
   return (
     <div className="App">
     <AuthProvider>
@@ -24,7 +26,6 @@ function App() {
 
       <Routes>
 {/* 
-        <Route path="/" element={<LandingPage />} >
           <Route path="home" element={<Home />} />  
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
@@ -36,11 +37,11 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         
-        <Route path="/store" element={<RequireAuth><Store /></RequireAuth>}>
-        </Route>
+        <Route path="/store" element={<RequireAuth><Store lastItem={lastItem}/></RequireAuth>}></Route>
+
         <Route path="/store/:itemId" element={<ItemDetails></ItemDetails>}></Route>
 
-        <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
+        <Route path="/profile" element={<RequireAuth><Profile setLastItem={setLastItem} /></RequireAuth>} />
 
       </Routes>
 

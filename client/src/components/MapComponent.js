@@ -23,7 +23,7 @@ export const MapComponent = ({items}) => {
 
   return (
     <div>
-      {console.log(user.location,items.location)}
+      {/* {console.log(user.location,items.location)} */}
       {Object.keys(user).length !== 0 ?
       <MapContainer className={'mapContainer'} center={[user.location.latitude, user.location.longitude]} zoom={13}>
         <TileLayer

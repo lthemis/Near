@@ -5,7 +5,9 @@ import { getUser } from '../services/ApiService';
 import { useAuth } from '../utils/auth';
 import { Chart } from '../components/Chart';
 
-export const Profile = () => {
+// export const Profile = ({setStoreRenderFlag, storeRenderFlag}) => {
+export const Profile = (props) => {
+
   const auth = useAuth()
   const [user, setUser] = useState({})
 
@@ -27,7 +29,9 @@ export const Profile = () => {
         <h1>Welcome {user.userName}!</h1>
         <p>Income: {user.wallet.income}</p>
         <p>Expenses: {user.wallet.expenses}</p>
-        <ItemForm></ItemForm>
+        {/* <ItemForm flag={storeRenderFlag} setFlag={setStoreRenderFlag}></ItemForm> */}
+        <ItemForm flag={props.flag} setLastItem={props.setLastItem}></ItemForm>
+
         <Chart income={user.wallet.income} expenses={user.wallet.expenses}></Chart>
       </div>
         : null}

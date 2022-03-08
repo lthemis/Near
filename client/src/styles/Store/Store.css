@@ -1,0 +1,59 @@
+.storeContainer {
+  border: 2rem solid red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 90vh;
+}
+
+.storeContainer .listContainer {
+  border: 2px solid green;
+  width: 40vw;
+  height: 100%;
+}
+
+.storeContainer .listContainer .filterAreaContainer .filtersContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.storeContainer .listContainer .filterAreaContainer .filtersContainer .rangeFilterContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.storeContainer .listContainer .filterAreaContainer .filtersContainer .checkboxContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.storeContainer .listContainer .filterAreaContainer .searchBarContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.storeContainer .mapContainer {
+  border: 2px solid yellow;
+  width: 40vw;
+}
+/*# sourceMappingURL=Store.css.map */

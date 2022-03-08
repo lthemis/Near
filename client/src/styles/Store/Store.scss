@@ -1,0 +1,41 @@
+.storeContainer {
+    border: 2rem solid red;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 90vh;
+
+  .listContainer {
+    border: 2px solid green;
+    width: 40vw;
+    height: 100%;
+
+    .filterAreaContainer{
+
+
+      .filtersContainer {
+        display: flex;
+        justify-content: space-around;
+
+        .rangeFilterContainer{
+          display: flex;
+          justify-content: center;
+        }
+        .checkboxContainer{
+          display: flex;
+          justify-content: center;
+        }
+      }
+      .searchBarContainer {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+  .mapContainer {
+    border: 2px solid yellow;
+    width: 40vw;
+
+  }
+}
+

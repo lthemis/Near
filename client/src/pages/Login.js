@@ -30,14 +30,14 @@ export const Login = () => {
 
   return (
     <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="email">
+      <label htmlFor="email"> Email:
         <input name="email" placeholder="Email" {...register("email", 
         { required: true }
         )} />
         {errors.email && <span className="inputError">Email required</span>}
       </label>
 
-      <label htmlFor="password">
+      <label htmlFor="password"> Password:
         <input name="password" placeholder="Password" type="password" {...register("password", 
         { required: true }
         )} />

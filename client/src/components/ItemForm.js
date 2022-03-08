@@ -3,8 +3,11 @@ import { useAuth } from '../utils/auth';
 import { FieldValues, useForm, SubmitHandler  } from "react-hook-form";
 import { addItem } from '../services/ApiService';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export const ItemForm = () => {
+export const ItemForm = (props) => {
+// export const ItemForm = ({setStoreRenderFlag, storeRenderFlag}) => {
+
   const auth = useAuth();
   const navigate = useNavigate()
 
@@ -13,21 +16,26 @@ export const ItemForm = () => {
       itemName: "",
       itemDesc: "",
       itemPrice: "",
-      categories: ""
+      categories: "",
+      photoUrl:"",
     }
   });
 
-  const onSubmit = data => {
+  const onSubmit = async data => {
     const newItem = {
       itemName: data.itemName,
       itemDesc: data.itemDesc,
       itemPrice: data.itemPrice,
       categories: data.categories,
-      sellerId: auth.getUserFromSession()
+      sellerId: auth.getUserFromSession(),
+      photoUrl: data.photoUrl
     };
-    console.log(newItem);
-    addItem(newItem)
+    await addItem(newItem).then((res) => props.setLastItem(res))
+    // console.log("DDAADSADASDADA",itemItemFromDb);
     reset()
+    // setStoreRenderFlag(!storeRenderFlag)
+    // props.setFlag(!props.flag)
+    // props.setLastItem(itemItemFromDb)
     navigate('/store', {replace:true})
   }
 
@@ -52,6 +60,8 @@ export const ItemForm = () => {
           <option value="Mobility">Mobility</option>
           <option value="Other">Other</option>
         </select>
+        <input placeholder="Photo" {...register("photoUrl", 
+        )} />
         {errors.itemName && <span>Item name required (between 1 and 30 characters)</span>}
         {errors.itemDesc && <span>Item description required (between 10 and 100 characters)</span>}
         {errors.password && <span>This field is required. Minimum eight characters, at least one letter and one number</span>}

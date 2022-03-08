@@ -1,37 +1,53 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { getItems, getUser } from '../services/ApiService';
 import { Item } from '../components/Item';
 import { MapComponent } from '../components/MapComponent';
 import { useAuth } from '../utils/auth';
+import '../styles/Store/Store.css';
 
-export const Store = () => {
-
-  const [items, setItems] = useState([])
-  const [maxDistance, setMaxDistance] = useState(0)
-  const [selectedDistance, setSelectedDistance] = useState(0)
+export const Store = (props) => {
+  const [items, setItems] = useState([]);
+  const [maxDistance, setMaxDistance] = useState(0);
+  const [selectedDistance, setSelectedDistance] = useState(0);
 
   const auth = useAuth();
 
-  useEffect( () => {
-    const fetchData = async () => {
-      const items  = await getItems()
-      const userId = auth.getUserFromSession()
-      const user = await getUser(userId)
+  const fetchItems = async () => {
+    const itemsFromDb = await getItems(); /// API CALL TO THE DB
+    const userId = auth.getUserFromSession();
+    const user = await getUser(userId);
 
-      const itemsWithDistance = items.map( item => {
-        item.distance = calculateDistanceInMeters(user.location, item.location)
-        return item
-      })
+    const itemsWithDistance = itemsFromDb.map(item => {
+      item.distance = calculateDistanceInMeters(user.location, item.location);
+      return item;
+    });
+    return itemsWithDistance;
+  }
 
-      setItems(itemsWithDistance)
-      const sortedItems = items.sort((a,b) => {
-        return b.distance - a.distance
-      })
-      setMaxDistance(Math.ceil(sortedItems[0].distance))
+  const fetchMaxDistance = async (itemsWithDistance) => {
+    let sortedItems;
+    if (items.length > 1){
+      sortedItems = itemsWithDistance.sort((a, b) => {
+        return b.distance - a.distance;
+      });
+    } else {
+      sortedItems = itemsWithDistance;
     }
-    fetchData()
-  },[])
+    console.log("ITEMS",items);
+    return Math.ceil(sortedItems[0].distance)
+  };
+
+  const setStates = async ( ) => {
+    const fetchedItems = await fetchItems()
+    const fetchedMaxDistance = await fetchMaxDistance(fetchedItems)
+    setItems(fetchedItems)
+    setMaxDistance(fetchedMaxDistance)
+  }
+
+  useEffect(() => {
+    setStates()
+  }, []);
 
   const calculateDistanceInMeters = (userLocation, itemLocation) => {
     const userLat = userLocation.latitude;
@@ -41,44 +57,105 @@ export const Store = () => {
 
     // source: https://www.movable-type.co.uk/scripts/latlong.html
     const R = 6371e3; // metres
-    const φ1 = userLat * Math.PI/180; // φ, λ in radians
-    const φ2 = itemLat * Math.PI/180;
-    const Δφ = (itemLat-userLat) * Math.PI/180;
-    const Δλ = (itemLon-userLon) * Math.PI/180;
-    
-    const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-              Math.cos(φ1) * Math.cos(φ2) *
-              Math.sin(Δλ/2) * Math.sin(Δλ/2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    
-    const d = R * c; // in metres
-    return d
-  }
+    const φ1 = (userLat * Math.PI) / 180; // φ, λ in radians
+    const φ2 = (itemLat * Math.PI) / 180;
+    const Δφ = ((itemLat - userLat) * Math.PI) / 180;
+    const Δλ = ((itemLon - userLon) * Math.PI) / 180;
 
-  const handleDistanceFilter = (e) => {
-    setSelectedDistance(Math.ceil(Number(e.target.value)))
-    console.log(selectedDistance)
-    console.log('X',items.filter(item => item.distance <= selectedDistance))
-  }
+    const a =
+      Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+      Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    const d = R * c; // in metres
+    return d;
+  };
+
+  const handleDistanceFilter = e => {
+    setSelectedDistance(Math.ceil(Number(e.target.value)));
+    console.log(selectedDistance);
+    console.log(
+      'X',
+      items.filter(item => item.distance <= selectedDistance)
+    );
+  };
 
   return (
-    <div>
-      Filer: 
-      <div>
-       <input onChange={handleDistanceFilter} type="range" id="range" name="range"
-         min="0" max={maxDistance}/>
-      <label for="tange">Distance</label>
-    </div>
-      Category:
-      
-      <div>
-      {items.filter(item => item.distance <= selectedDistance).map(item => {
-        console.log('store item',item);
-        return <Item key={item._id} item={item}></Item>
-      })} 
+    <div className='storeContainer'>
+
+      <div className='listContainer'>
+        Filters:
+        <div className="filterAreaContainer">
+          <div className="filtersContainer">
+            <div className="rangeFilterContainer">
+              <label for='range'>Distance: {selectedDistance}</label>
+              <input
+                onChange={handleDistanceFilter}
+                type='range'
+                id='range'
+                name='range'
+                min='0'
+                max={maxDistance}
+              />
+            </div>
+
+            <div className='checkboxContainer'>
+              <div>
+                <label for="Food">Food</label>
+                <input type="checkbox" name="Food"></input>
+              </div>
+              <div>
+                <label for="Furniture">Furniture</label>
+                <input type="checkbox" name="Furniture"></input>
+              </div>            
+              <div>
+                <label for="Mobility">Mobility</label>
+                <input type="checkbox" name="Mobility"></input>
+              </div>            
+              <div>
+                <label for="Other">Other</label>
+                <input type="checkbox" name="Other"></input>
+              </div>
+            </div>
+            
+          </div>
+          <div className="searchBarContainer">
+            <label for="search">Search</label>
+            <input name="search" type="text"></input>
+          </div>
+
+
+        </div>
+        
+        List:
+        {/* {!loading ? 
+        <div>LOADING</div>
+          :
+        <div>
+          {items
+            .filter(item => item.distance <= selectedDistance)
+            .map(item => {
+              console.log('store item', item);
+              return <Item key={item._id} item={item}></Item>;
+            })}
+        </div>
+        } */}
+
+        <div style={{overflow: "scroll", height: "500px"}}>
+          {items
+            .filter(item => item.distance <= selectedDistance)
+            .map(item => {
+              console.log('store item', item);
+              return <Item key={item._id} item={item}></Item>;
+            })}
+        </div>
       </div>
-      <MapComponent items={items.filter(item => item.distance <= selectedDistance)}></MapComponent>
-      
+
+      <div className='mapContainer'>
+        <MapComponent
+          items={items.filter(item => item.distance <= selectedDistance)}
+        ></MapComponent>
+      </div>
     </div>
-  )
-}
+  );
+};
