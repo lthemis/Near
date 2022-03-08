@@ -1,4 +1,73 @@
 .itemContainer {
-  border: 2rem solid salmon;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 15vh;
+  border-color: #071E3D;
+  border-width: 2.5px;
+  border-radius: 10px;
+  margin: 1rem 0;
+  background-color: #f5fbfc;
+}
+
+.itemContainer .textContainer {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.itemContainer .textContainer .itemHeader {
+  font-size: 2em;
+  color: primaryColor;
+}
+
+.itemContainer .textContainer .descDetail {
+  color: #FD6584;
+}
+
+.itemContainer .textContainer p {
+  font-size: 1.2em;
+}
+
+.itemContainer .photoContainer img {
+  margin: 1rem;
+  padding: 1rem;
+  width: 100px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+  border-color: #071E3D;
+}
+
+.itemContainer .itemBtn {
+  text-align: center;
+  line-height: 20px;
+  height: 35%;
+  width: 30%;
+  background-color: #071E3D;
+  font-family: "Lato", sans-serif;
+  color: #FD6584;
+  padding: 1rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  border-radius: 10px;
+}
+
+.itemContainer .itemBtn:hover {
+  border: 2px solid #278EA5;
 }
 /*# sourceMappingURL=Item.css.map */

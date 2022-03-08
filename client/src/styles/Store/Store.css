@@ -56,4 +56,9 @@
   border: 2px solid yellow;
   width: 40vw;
 }
+
+.listItemContainer {
+  overflow: scroll;
+  height: 80vh;
+}
 /*# sourceMappingURL=Store.css.map */

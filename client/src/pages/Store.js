@@ -73,11 +73,6 @@ export const Store = (props) => {
 
   const handleDistanceFilter = e => {
     setSelectedDistance(Math.ceil(Number(e.target.value)));
-    console.log(selectedDistance);
-    console.log(
-      'X',
-      items.filter(item => item.distance <= selectedDistance)
-    );
   };
 
   return (
@@ -128,20 +123,8 @@ export const Store = (props) => {
         </div>
         
         List:
-        {/* {!loading ? 
-        <div>LOADING</div>
-          :
-        <div>
-          {items
-            .filter(item => item.distance <= selectedDistance)
-            .map(item => {
-              console.log('store item', item);
-              return <Item key={item._id} item={item}></Item>;
-            })}
-        </div>
-        } */}
 
-        <div style={{overflow: "scroll", height: "500px"}}>
+        <div className="listItemContainer" style={{overflow: "scroll", height: "80vh"}}>
           {items
             .filter(item => item.distance <= selectedDistance)
             .map(item => {

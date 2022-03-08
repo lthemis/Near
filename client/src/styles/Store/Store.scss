@@ -1,3 +1,6 @@
+@import "../variables//variables.scss";
+
+
 .storeContainer {
     border: 2rem solid red;
     display: flex;
@@ -35,7 +38,12 @@
   .mapContainer {
     border: 2px solid yellow;
     width: 40vw;
-
   }
 }
+
+.listItemContainer{
+  overflow: scroll;
+  height: 80vh;
+}
+
 
