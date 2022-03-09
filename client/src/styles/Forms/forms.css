@@ -142,4 +142,57 @@
   display: -ms-flexbox;
   display: flex;
 }
+
+.newItemForm button {
+  background-color: #21E6C1;
+  padding: 1rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  font-family: "Lato", sans-serif;
+  color: #071E3D;
+  width: 15rem;
+  border-radius: 10px;
+}
+
+.newItemForm button:hover {
+  border: 2px solid #278EA5;
+}
+
+.newItemForm button:hover :active {
+  -webkit-transform: scale(2);
+          transform: scale(2);
+}
+
+.newItemForm label {
+  font-weight: 700;
+  padding: 0.5rem;
+  color: #1F4287;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 1.1rem;
+}
+
+.newItemForm .inputError {
+  font-size: 0.8rem;
+  color: #FD6584;
+}
+
+.newItemForm input {
+  font-family: "Lato", sans-serif;
+  width: 30vw;
+  padding: 1rem;
+  margin: 0.5rem;
+  min-width: 20rem;
+  border-radius: 10px;
+}
+
+.newItemForm input:focus, .newItemForm input:hover {
+  -webkit-box-shadow: 0px 0px 12px 2px rgba(253, 101, 132, 0.53);
+          box-shadow: 0px 0px 12px 2px rgba(253, 101, 132, 0.53);
+}
 /*# sourceMappingURL=forms.css.map */

@@ -55,7 +55,7 @@
 
 .itemContainer .itemBtn {
   text-align: center;
-  line-height: 20px;
+  line-height: 15px;
   height: 35%;
   width: 30%;
   background-color: #071E3D;
@@ -68,6 +68,43 @@
 }
 
 .itemContainer .itemBtn:hover {
+  border: 2px solid #FD6584;
+}
+
+.itemDetailsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 5rem;
+}
+
+.itemDetailsContainer .itemDetailsTextContainer p {
+  font-family: "Lato", sans-serif;
+  font-size: 1.2rem;
+  margin: 0.5rem;
+  color: #1F4287;
+}
+
+.itemBtn {
+  text-align: center;
+  line-height: 15px;
+  height: 35%;
+  width: 30%;
+  background-color: #071E3D;
+  font-family: "Lato", sans-serif;
+  color: #FD6584;
+  padding: 1rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  border-radius: 10px;
+}
+
+.itemBtn:hover {
   border: 2px solid #FD6584;
 }
 /*# sourceMappingURL=Item.css.map */

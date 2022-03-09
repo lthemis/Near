@@ -21,4 +21,9 @@ body {
   min-height: 100vh;
   background-color: #E2F3F5;
 }
+
+body ::-webkit-scrollbar {
+  display: none;
+  /* for Chrome, Safari, and Opera */
+}
 /*# sourceMappingURL=base.css.map */

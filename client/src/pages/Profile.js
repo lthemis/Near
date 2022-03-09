@@ -4,6 +4,7 @@ import { ItemForm } from '../components/ItemForm';
 import { getUser } from '../services/ApiService';
 import { useAuth } from '../utils/auth';
 import { Chart } from '../components/Chart';
+import '../styles/Profile/Profile.css'
 
 // export const Profile = ({setStoreRenderFlag, storeRenderFlag}) => {
 export const Profile = (props) => {
@@ -22,17 +23,18 @@ export const Profile = (props) => {
   })
 
   return (
-    <div> Profile page:
+    <div className='container'>
 
       {Object.keys(user).length !== 0 ? 
-      <div>
-        <h1>Welcome {user.userName}!</h1>
-        <p>Income: {user.wallet.income}</p>
-        <p>Expenses: {user.wallet.expenses}</p>
-        {/* <ItemForm flag={storeRenderFlag} setFlag={setStoreRenderFlag}></ItemForm> */}
-        <ItemForm flag={props.flag} setLastItem={props.setLastItem}></ItemForm>
-
-        <Chart income={user.wallet.income} expenses={user.wallet.expenses}></Chart>
+      <div className="profileContainer">
+        <div className='textContainer'>
+          <h1 className='headerSell' >Welcome <span className='detail'>{user.userName}</span>! Time to sell something? <br/> Do it here!</h1>
+      
+          <ItemForm flag={props.flag} setLastItem={props.setLastItem}></ItemForm>
+        </div>
+        <div className='chartContainer'>
+          <Chart income={user.wallet.income} expenses={user.wallet.expenses}></Chart>
+        </div>
       </div>
         : null}
     </div>

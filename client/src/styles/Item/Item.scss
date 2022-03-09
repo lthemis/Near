@@ -48,7 +48,7 @@
   }
   .itemBtn {
     text-align: center;
-    line-height: 20px;
+    line-height: 15px;
     height: 35%;
     width: 30%;
 
@@ -68,3 +68,39 @@
   }
 }
 
+
+.itemDetailsContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5rem;
+  .itemDetailsTextContainer {
+    p {
+      font-family: $font;
+      font-size: 1.2rem;
+      margin: 0.5rem;
+      color: $supportPrimaryColor
+    }
+  }
+}
+
+.itemBtn {
+  text-align: center;
+  line-height: 15px;
+  height: 35%;
+  width: 30%;
+
+
+  background-color: $primaryColor;
+  font-family: $font;
+  color: $brandColor;
+  padding: 1rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+
+  border-radius:10px;
+
+  &:hover {
+    border: 2px solid $brandColor;
+  }
+}

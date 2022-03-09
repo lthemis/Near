@@ -17,6 +17,7 @@ const ItemSchema = new Schema({
   },
   sellerId:{type: mongoose.ObjectId},
   buyerId: {type: mongoose.ObjectId},
+  photoUrl: {type: String}
 })
 
 const UserSchema = new Schema({

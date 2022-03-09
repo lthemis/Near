@@ -8,8 +8,9 @@ import '../styles/Store/Store.css';
 
 export const Store = (props) => {
   const [items, setItems] = useState([]);
-  const [maxDistance, setMaxDistance] = useState(0);
+  const [maxDistance, setMaxDistance] = useState(100);
   const [selectedDistance, setSelectedDistance] = useState(0);
+
 
   const auth = useAuth();
 
@@ -88,7 +89,7 @@ export const Store = (props) => {
                 type='range'
                 id='range'
                 name='range'
-                min='0'
+                min='100'
                 max={maxDistance}
               />
             </div>

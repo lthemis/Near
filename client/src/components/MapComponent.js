@@ -25,7 +25,7 @@ export const MapComponent = ({items}) => {
     <div>
       {/* {console.log(user.location,items.location)} */}
       {Object.keys(user).length !== 0 ?
-      <MapContainer className={'mapContainer'} center={[user.location.latitude, user.location.longitude]} zoom={13}>
+      <MapContainer className={'mapContainer'} center={[user.location.latitude, user.location.longitude]} zoom={12}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

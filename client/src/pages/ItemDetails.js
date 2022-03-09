@@ -3,6 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { deleteItem, getItem } from '../services/ApiService'
 import { useAuth } from '../utils/auth'
 import { MapComponent } from '../components/MapComponent';
+import '../styles/Store/Store.css';
+import '../styles/Item/Item.css';
+
+
 
 export const ItemDetails = () => {
   const [item, setItem] = useState({})
@@ -27,16 +31,22 @@ export const ItemDetails = () => {
   }
 
   return (
-    <div>Item details
-      <h1>{item.itemName}</h1>
-      <p>{item.itemDesc}</p>
-      <p>{item.itemPrice}</p>
-      <p>{item.sellerId}</p>
-      <button onClick={clickHandler}>Buy</button>
+    <div className='itemDetailsContainer'>
+      <div className='itemDetailsTextContainer'>
+        <h1 className='headerSell'>Item details</h1>
+        <p>Item: <span className='detail'>{item.itemName}</span></p>
+        <p>Item desription: <span className='detail'>{item.itemDesc}</span></p>
+        <p>Price: <span className='detail'>{item.itemPrice}</span></p>
+        <p>Seller: <span className='detail'>{item.sellerId}</span></p>
+        <button className="itemBtn" onClick={clickHandler}>Buy</button>
+      </div>
+ 
       { Object.keys(item).length !== 0  ?
+      <div className="mapContainer">
         <MapComponent items={item}></MapComponent>
+      </div>
       :
-      null
+      <div></div>
       }
     </div>
   )

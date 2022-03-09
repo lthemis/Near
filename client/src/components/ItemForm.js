@@ -4,6 +4,9 @@ import { FieldValues, useForm, SubmitHandler  } from "react-hook-form";
 import { addItem } from '../services/ApiService';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import '../styles/Profile/Profile.css'
+
+
 
 export const ItemForm = (props) => {
 // export const ItemForm = ({setStoreRenderFlag, storeRenderFlag}) => {
@@ -41,30 +44,34 @@ export const ItemForm = (props) => {
 
   return (
     <div>
-      <h2>Add new item:</h2>
-
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input placeholder="Item" {...register("itemName", 
+      <form className="newItemForm" onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="item">Item</label>
+        <input name="item" placeholder="Item" {...register("itemName", 
         { required: true, minLength:1, maxLength: 30 }
         )} />
-        <input placeholder="Item description" {...register("itemDesc", 
+        {errors.itemName && <span>Item name required (between 1 and 30 characters)</span>}
+        <label htmlFor="itemDesc">Item description</label>
+        <input name="itemDesc" placeholder="Item description" {...register("itemDesc", 
         { required: true, minLength:10, maxLength: 100 }
         )} />
-        <input placeholder="Price" {...register("itemPrice", 
+        {errors.itemDesc && <span>Item description required (between 10 and 100 characters)</span>}
+        <label htmlFor="itemPrice">Price</label>
+        <input name="itemPrice" placeholder="Price" {...register("itemPrice", 
         { required: true }
         )} />
-        <select {...register("categories", {required: true})}>
+        {errors.itemPrice && <span>This field is required. Minimum eight characters, at least one letter and one number</span>}
+        <label htmlFor="Photo">Photo url</label>
+        <input name="Photo" placeholder="Photo" {...register("photoUrl", 
+        )} />
+        <label htmlFor="category">Category</label>
+        <select name="category" {...register("categories", {required: true})}>
           <option disabled selected value> -- select an option -- </option>
           <option value="Food">Food</option>
           <option value="Furniture">Furniture</option>
           <option value="Mobility">Mobility</option>
           <option value="Other">Other</option>
         </select>
-        <input placeholder="Photo" {...register("photoUrl", 
-        )} />
-        {errors.itemName && <span>Item name required (between 1 and 30 characters)</span>}
-        {errors.itemDesc && <span>Item description required (between 10 and 100 characters)</span>}
-        {errors.password && <span>This field is required. Minimum eight characters, at least one letter and one number</span>}
+
         <button>Add</button>
       </form>
     </div>

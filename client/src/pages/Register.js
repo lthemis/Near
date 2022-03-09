@@ -90,6 +90,7 @@ export const Register = () => {
             <input
               name='password'
               placeholder='Password'
+              type="password"
               {...register('password', {
                 required: true,
                 pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
