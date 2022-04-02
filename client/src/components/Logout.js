@@ -8,6 +8,6 @@ export const Logout = () => {
   }
 
   return (
-    <button onClick={clickHandler}>Logout</button>
+    <button onClick={clickHandler}>Logout X</button>
   )
 }
