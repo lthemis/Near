@@ -1,13 +1,3 @@
-# Near
-
-### Endpoints:
-
-| Method     | path          | params   | body   | returns   |
-| ---------- | ------------- | -------- | ------ | --------- |
-| GET        | landing page  | -        | -      | -         |
-| ---------- | ------------- | -------- | ------ | --------- |
-
-
 # Near!
 
 <p align="center">
@@ -34,36 +24,28 @@ Near! is an E-commerce solution providing a flawless proximity-based shopping ex
     ```bash
     npm install
     ```
-
-3. Create .env file in client folder
-
-    ```bash
-    REACT_APP_BASE_URL=
-    REACT_APP_ESRI_API_KEY=
-    REACT_APP_SOCKET_URL=
-    REACT_APP_CLOUDINARY_UPLOAD_PRESET=
-    REACT_APP_CLOUDINARY_CLOUD_NAME=
-    ```
-
-4. Create .env file in server folder
+3. Create accounts and obtain keys from [Positionstack](https://positionstack.com/) and [Mapquest](https://developer.mapquest.com/documentation/)
+3. Create .env file in server folder
 
     ```bash
-    DATABASE_URL=
-    SOCKET_URL=
-    SERVER_URL=
-    SERVER_PORT=
+    PORT=3000
+    DB=
+    SECRET=
+    POSITIONSTACK_KEY="967f238897022d4d9dfc98578332fca3"
+    MAPQUEST="kGl1I8UQ43ZAtWMGAJMyd2twCgNUZtuU"
     ```
 
-5. Install the [Mongo](https://www.mongodb.com/docs/manual/installation/) database on your machine
+
+1. Install the [Mongo](https://www.mongodb.com/docs/manual/installation/) database on your machine
 
 
-6. Start the server. From the server folder, run
+2. Start the server. From the server folder, run
 
     ```bash
-    npx nodemon ./index.ts
+    nodemon index.js
     ```
 
-7. Start the client. From the client folder, run
+3. Start the client. From the client folder, run
 
     ```bash
     npm start
@@ -76,3 +58,10 @@ Near! is an E-commerce solution providing a flawless proximity-based shopping ex
 * [Node.js](https://nodejs.org/)
 * [Express](https://expressjs.com/)
 * [Mongo](https://www.mongodb.com/)
+
+### Endpoints:
+
+| Method     | path          | params   | body   | returns   |
+| ---------- | ------------- | -------- | ------ | --------- |
+| GET        | landing page  | -        | -      | -         |
+| ---------- | ------------- | -------- | ------ | --------- |
