@@ -3,7 +3,12 @@
 <p align="center">
   <img src="client/src/assets/cover.png" width="200"/>
 </p>
-Near! is an E-commerce solution providing a flawless proximity-based shopping experience. It enables users to shop with and support local community by buing and selling items based on distance between their current locationa and the location of the selected item.
+Near! is a new approach to e-commerce - it's an app providing a flawless proximity-based shopping experience, allowing you to trade directly with the local community.
+
+• Designed and developed a full-stack application from scratch for a week-long hackathon.
+• Implemented client and the underlying API, data model, geocoding, and authentication.
+
+• Created using: React, Express, MongoDB, Mongoose, ReactHookForm, Auth0.
 
 ## Screenshots
 
@@ -58,6 +63,7 @@ Near! is an E-commerce solution providing a flawless proximity-based shopping ex
 * [Node.js](https://nodejs.org/)
 * [Express](https://expressjs.com/)
 * [Mongo](https://www.mongodb.com/)
+<<<<<<< HEAD
 
 ### Endpoints:
 
@@ -65,3 +71,5 @@ Near! is an E-commerce solution providing a flawless proximity-based shopping ex
 | ---------- | ------------- | -------- | ------ | --------- |
 | GET        | landing page  | -        | -      | -         |
 | ---------- | ------------- | -------- | ------ | --------- |
+=======
+>>>>>>> 9dc95534253ea72c6e6a923184b7b00dffc1e076
