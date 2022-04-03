@@ -3,12 +3,7 @@
 <p align="center">
   <img src="client/src/assets/cover.png" width="200"/>
 </p>
-Near! is a new approach to e-commerce - it's an app providing a flawless proximity-based shopping experience, allowing you to trade directly with the local community.
-
-• Designed and developed a full-stack application from scratch for a week-long hackathon.
-• Implemented client and the underlying API, data model, geocoding, and authentication.
-
-• Created using: React, Express, MongoDB, Mongoose, ReactHookForm, Auth0.
+Near! is an E-commerce solution providing a flawless proximity-based shopping experience. It enables users to shop with and support local community by buing and selling items based on distance between their current locationa and the location of the selected item.
 
 ## Screenshots
 
@@ -29,28 +24,29 @@ Near! is a new approach to e-commerce - it's an app providing a flawless proximi
     ```bash
     npm install
     ```
-3. Create accounts and obtain keys from [Positionstack](https://positionstack.com/) and [Mapquest](https://developer.mapquest.com/documentation/)
-3. Create .env file in server folder
+3. Create accounts and obtain your personal API keys from [Positionstack](https://positionstack.com/) and [Mapquest](https://developer.mapquest.com/documentation/).
+   
+4. Create .env file in server folder.
 
     ```bash
     PORT=3000
     DB=
     SECRET=
-    POSITIONSTACK_KEY="967f238897022d4d9dfc98578332fca3"
-    MAPQUEST="kGl1I8UQ43ZAtWMGAJMyd2twCgNUZtuU"
+    POSITIONSTACK_KEY=
+    MAPQUEST=
     ```
 
 
-1. Install the [Mongo](https://www.mongodb.com/docs/manual/installation/) database on your machine
+5. Install the [Mongo](https://www.mongodb.com/docs/manual/installation/) database on your machine.
 
 
-2. Start the server. From the server folder, run
+6. Start the server. From the server folder, run
 
     ```bash
     nodemon index.js
     ```
 
-3. Start the client. From the client folder, run
+7. Start the client. From the client folder, run
 
     ```bash
     npm start
@@ -63,13 +59,3 @@ Near! is a new approach to e-commerce - it's an app providing a flawless proximi
 * [Node.js](https://nodejs.org/)
 * [Express](https://expressjs.com/)
 * [Mongo](https://www.mongodb.com/)
-<<<<<<< HEAD
-
-### Endpoints:
-
-| Method     | path          | params   | body   | returns   |
-| ---------- | ------------- | -------- | ------ | --------- |
-| GET        | landing page  | -        | -      | -         |
-| ---------- | ------------- | -------- | ------ | --------- |
-=======
->>>>>>> 9dc95534253ea72c6e6a923184b7b00dffc1e076
