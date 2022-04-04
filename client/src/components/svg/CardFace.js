@@ -1,5 +1,4 @@
 import React from 'react'
-import '../../styles/Home/Home.css'
 
 export const CardFace = ({height, width}) => {
   return (

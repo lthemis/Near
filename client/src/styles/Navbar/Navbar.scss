@@ -1,14 +1,11 @@
 @import "../variables//variables.scss";
 
-
-
 img {
   width: 20rem;
   height: auto;
 }
 
 .navContainer {
-  height: 10wh;
   font-family: $font;
   font-weight: $fontWeight;
   font-size: 1.5rem;
@@ -17,14 +14,22 @@ img {
   justify-content: space-between;
   align-items: center;
   background-color: $backgroundColorMain;
-  & > * {
+  height: 12.5vh;
+  &
+    > * {
     min-width: 20vw;
-    padding: 0 1rem 0 1rem;
+    padding: 0
+      1rem
+      0
+      1rem;
     display: flex;
     justify-content: space-around;
-    & > * {
-      padding: 0 1rem 0 1rem;
+    &
+      > * {
+      padding: 0
+        1rem
+        0
+        1rem;
     }
   }
 }
-

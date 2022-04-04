@@ -1,0 +1,17 @@
+[{
+  "itemName": 
+  itemDesc: 
+  itemPrice:
+  photoUrl: 
+  location: {
+    longitude: 
+    latitude: 
+  },
+  categories: ["Food"]
+  photoUrl: 
+}]
+
+
+
+
+enum: ["Food", "Furniture", "Mobility", "Other"],

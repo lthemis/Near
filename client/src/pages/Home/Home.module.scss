@@ -1,0 +1,55 @@
+@import "../../styles/variables/variables.scss";
+
+.homeContainer {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(
+      240px,
+      1fr
+    )
+  );
+  @media (max-width: 580px) {
+    grid-template-rows: repeat(
+      1,
+      50%
+    );
+  }
+  height: 87.5vh;
+  padding: 0
+    5rem;
+  .animationContainer {
+    .animation {
+      height: 100%;
+    }
+  }
+
+  .introContainer {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    .card {
+      display: flex;
+    }
+
+    .mainHeading {
+      color: $brandColor;
+      font-size: 4rem;
+      font-weight: 700;
+      @media (max-width: 580px) {
+        font-size: 2.5rem;
+      }
+    }
+
+    .subHeading {
+      color: $supportPrimaryColor;
+      font-size: 3em;
+      font-weight: 400;
+      @media (max-width: 580px) {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
