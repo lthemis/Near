@@ -1,4 +1,4 @@
-# Near!
+# Near! [Live version](https://nearshoppingapp.netlify.app/)
 
 <p align="center">
   <img src="client/src/assets/cover.png" width="200"/>
