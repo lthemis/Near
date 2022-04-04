@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const session = require('express-session');
 const SECRET = process.env.SECRET
+const path = require("path");
 
 const corsConfig = {
   origin: 'http://localhost:3001',
@@ -33,6 +34,10 @@ app.use(
 );
 
 app.use(router);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.resolve(__dirname, '../client/build')))
+}
 
 app.listen(SERVER_PORT, (err) => {
   if (err) {
