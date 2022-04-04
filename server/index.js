@@ -36,7 +36,7 @@ app.use(
 app.use(router);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.resolve(__dirname, '../client/build')))
+  app.use(express.static(path.resolve(__dirname, './build')))
 }
 
 app.listen(SERVER_PORT, (err) => {
