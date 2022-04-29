@@ -1,8 +1,5 @@
-import React from 'react'
-import { CardFace } from '../../components/svg/CardFace';
 import Lottie from "lottie-react";
-import styles from './Home.module.css';
-import { style } from '@mui/system';
+import styles from './Home.module.scss';
 const codingLottie = require('../../assets/53084-store-location.json')
 
 export const Home = () => {

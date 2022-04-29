@@ -1,19 +1,17 @@
-import React from 'react'
-import { Logout } from '../components/Logout';
-import { Link, NavLink, Outlet } from 'react-router-dom';
-import { useAuth } from '../utils/auth';
-import '../styles/Navbar/Navbar.css';
+import { Logout } from '../Logout';
+import { NavLink } from 'react-router-dom';
+import { useAuth } from '../../utils/auth';
+import styles from './Navbar.module.scss';
 
 export const Navbar = () => {
   const auth = useAuth()
 
   const path = auth.checkIfAuthenticated() ? "store" : "/";
 
-  // wrap navlinks in li elements, divs uls
   return (
-    <nav className="navContainer">
+    <nav className={styles.navContainer}>
         <NavLink to={`${path}`}>
-          <img src={require('../assets/cover.png')} alt='logo'></img>
+          <img src={require('../../assets/cover.png')} alt='logo'></img>
         </NavLink>
 
         {auth.checkIfAuthenticated()?
