@@ -1,8 +1,9 @@
 import L from "leaflet";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
 
-const createRoutineMachineLayer = ({userLocation, itemLocation}) => {
+const createRoutineMachineLayer = ({ userLocation, itemLocation }) => {
   // console.log('RM', userLocation, itemLocation);
   // console.log('RM - user', userLocation.latitude, userLocation.longitude);
   // console.log('ITEMS', itemLocation);
@@ -16,14 +17,14 @@ const createRoutineMachineLayer = ({userLocation, itemLocation}) => {
       // L.latLng(33.50546582848033, 36.29547681726967)
     ],
     lineOptions: {
-      styles: [{ color: "#6FA1EC", weight: 4 }]
+      styles: [{ color: "#6FA1EC", weight: 4 }],
     },
     show: false,
     addWaypoints: true,
     routeWhileDragging: true,
     draggableWaypoints: true,
     fitSelectedRoutes: true,
-    showAlternatives: false
+    showAlternatives: false,
   });
 
   return instance;

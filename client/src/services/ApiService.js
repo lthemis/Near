@@ -1,8 +1,5 @@
-
 // const BASE_URL = 'http://localhost:3000'
-const BASE_URL = 'https://nearappber.herokuapp.com'
-
-
+const BASE_URL = "https://nearappber.herokuapp.com";
 
 // const postConfig = {
 //   method: 'POST',
@@ -11,139 +8,129 @@ const BASE_URL = 'https://nearappber.herokuapp.com'
 //   headers: { 'Content-Type': 'application/json' },
 // }
 
-export const addUser = async (data) => {
-  return await fetch(`${BASE_URL}/addUser`, 
-  {
-    method: 'POST',
-    mode: 'cors',
-    credentials: 'include',
+export const addUser = (data) => {
+  return fetch(`${BASE_URL}/addUser`, {
+    method: "POST",
+    mode: "cors",
+    credentials: "include",
     headers: {
-      'Content-Type':'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(data)
-  })
-  .then(response => {
-    if( response.status < 300) {
-      return response.json()
-    } else {
-      console.log('error', response.status);
-      return new Error(`There was an error`)
+    body: JSON.stringify(data),
+  }).then((response) => {
+    if (response.status < 300) {
+      return response.json();
     }
-   })
-}
+    console.log("error", response.status);
+    return new Error(`There was an error`);
+  });
+};
 
 export const getUser = (id) => {
-  return fetch(`${BASE_URL}/getUser/${id}`, )
-    .then(response => {
-      if( response.status < 300) {
-        return response.json()
-      } else {
-        console.log('error', response.status);
-        return new Error(`There was an error`)
+  return fetch(`${BASE_URL}/getUser/${id}`)
+    .then((response) => {
+      if (response.status < 300) {
+        return response.json();
       }
-  }).catch(e => console.log(e));
-}
+      console.log("error", response.status);
+      return new Error(`There was an error`);
+    })
+    .catch((e) => console.log(e));
+};
 
-export const loginUser = async (data) => {
-  return await fetch(`${BASE_URL}/login`, 
-  {
-    method: 'POST',
-    mode: 'cors',
+export const loginUser = (data) => {
+  return fetch(`${BASE_URL}/login`, {
+    method: "POST",
+    mode: "cors",
     // credentials: 'include',
     headers: {
-      'Content-Type':'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(data)
-  })
-  .then(response => {
-    if( response.status < 300) {
-      return response.json()
-    } else {
-      console.log('error', response.status);
-      return new Error(`There was an error`)
+    body: JSON.stringify(data),
+  }).then((response) => {
+    if (response.status < 300) {
+      return response.json();
     }
-   })
-}
+    console.log("error", response.status);
+    return new Error(`There was an error`);
+  });
+};
 
-export const logoutUser = async () => {
+export const logoutUser = () => {
   return fetch(`${BASE_URL}/logout`, {
-    method: 'POST',
+    method: "POST",
     // credentials: 'include',
-    mode: 'cors',
-    headers: { 'Content-Type': 'application/json' },
+    mode: "cors",
+    headers: { "Content-Type": "application/json" },
   })
     .then((res) => res.json())
     .catch((err) => console.log(err));
-}
+};
 
-export const addItem = async (data) => {
-  return await fetch(`${BASE_URL}/addItem`, 
-  {
-    method: 'POST',
-    mode: 'cors',
+export const addItem = (data) => {
+  return fetch(`${BASE_URL}/addItem`, {
+    method: "POST",
+    mode: "cors",
     // credentials: 'include',
     headers: {
-      'Content-Type':'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(data)
-  })
-  .then(response => {
-    if( response.status < 300) {
-      return response.json()
-    } else {
-      console.log('error', response.status);
-      return new Error(`There was an error`)
+    body: JSON.stringify(data),
+  }).then((response) => {
+    if (response.status < 300) {
+      return response.json();
     }
-  })
-}
+    console.log("error", response.status);
+    return new Error(`There was an error`);
+  });
+};
 
-export const getItems = async () => {
-  return await fetch(`${BASE_URL}/getItems`)
-    .then(response => {
-      if( response.status < 300) {
-        return response.json()
-      } else {
-        console.log('error', response.status);
-        return new Error(`There was an error`)
-      }
-  })
-  .then(data => {
-    console.log('datainfetch', data);
-    return data});
-}
-
-export const getItem = async (id) => {
-  return await fetch(`${BASE_URL}/getItem/${id}`)
-    .then(response => {
-      if( response.status < 300) {
+export const getItems = () => {
+  return fetch(`${BASE_URL}/getItems`)
+    .then((response) => {
+      if (response.status < 300) {
         return response.json();
-      } else {
-        console.log('error', response.status);
-        return new Error(`There was an error`)
       }
-  })
-  .then(data => {
-    console.log('datainfetch', data);
-    return data});
-}
+      console.log("error", response.status);
+      return new Error(`There was an error`);
+    })
+    .then((data) => {
+      console.log("datainfetch", data);
+      return data;
+    });
+};
+
+export const getItem = (id) => {
+  return fetch(`${BASE_URL}/getItem/${id}`)
+    .then((response) => {
+      if (response.status < 300) {
+        return response.json();
+      }
+      console.log("error", response.status);
+      return new Error(`There was an error`);
+    })
+    .then((data) => {
+      console.log("datainfetch", data);
+      return data;
+    });
+};
 
 export const deleteItem = (itemId, buyerId) => {
-  return fetch(`${BASE_URL}/deleteItem`, 
-  {
-    method: 'DELETE',
-    mode: 'cors',
+  return fetch(`${BASE_URL}/deleteItem`, {
+    method: "DELETE",
+    mode: "cors",
     // credentials: 'include',
     headers: {
-      'Content-Type':'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({itemId,buyerId})
+    body: JSON.stringify({ itemId, buyerId }),
   })
-  .then(response => {
-    if( response.status < 300) {
-      return response.json()
-    } else {
-      console.log('error', response.status);
-      return new Error(`There was an error`)
-    }
-  }).catch(e => console.log(e));
-}
+    .then((response) => {
+      if (response.status < 300) {
+        return response.json();
+      }
+      console.log("error", response.status);
+      return new Error(`There was an error`);
+    })
+    .catch((e) => console.log(e));
+};

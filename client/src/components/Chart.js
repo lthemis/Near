@@ -6,19 +6,16 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend
+  Legend,
 } from "recharts";
 
-
-
-export const Chart = ({income, expenses}) => {
-
+export const Chart = ({ income, expenses }) => {
   const data = [
     {
       name: "Profit and loss statement",
-      income: income,
-      expenses: expenses
-    }
+      income,
+      expenses,
+    },
   ];
 
   return (
@@ -30,7 +27,7 @@ export const Chart = ({income, expenses}) => {
         top: 5,
         right: 30,
         left: 20,
-        bottom: 5
+        bottom: 5,
       }}
     >
       <CartesianGrid strokeDasharray="2 2" />
@@ -42,4 +39,4 @@ export const Chart = ({income, expenses}) => {
       <Bar dataKey="expenses" fill="#ba131a" />
     </BarChart>
   );
-}
+};
