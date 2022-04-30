@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -7,6 +8,7 @@ import { useAuth } from "../../utils/auth";
 /// import
 
 export const ItemForm = (props) => {
+  console.log("itemForm");
   // export const ItemForm = ({setStoreRenderFlag, storeRenderFlag}) => {
 
   const auth = useAuth();
@@ -28,6 +30,7 @@ export const ItemForm = (props) => {
   });
 
   const onSubmit = async (data) => {
+    console.log("submit");
     const newItem = {
       itemName: data.itemName,
       itemDesc: data.itemDesc,
@@ -101,7 +104,7 @@ export const ItemForm = (props) => {
           <option value="Other">Other</option>
         </select>
 
-        <button type="button">Add</button>
+        <button type="submit">Add</button>
       </form>
     </div>
   );

@@ -10,10 +10,10 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 90vh;
+    height: calc(100vh - $navHeight);
 
   .listContainer {
-    width: 40vw;
+    width: 50vw;
     height: 100%;
     overflow: hidden;
  
@@ -30,6 +30,8 @@ body {
     .filterAreaContainer{
       border: 2px solid $brandColor;
       border-radius: 10px;
+      width: 90%;
+      margin: 0 auto;
 
 
       .filtersContainer {
@@ -91,9 +93,4 @@ body {
   font-size: 1.2rem;
   font-weight: 400;
   font: $font;
-}
-
-.mapContainer {
-  box-shadow:0px 0px 4px 0.5px $primaryColor;
-  border-radius: 10px;
 }

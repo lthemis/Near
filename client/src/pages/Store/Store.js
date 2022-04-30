@@ -139,11 +139,7 @@ export const Store = () => {
         </div>
       </div>
 
-      <div className={styles.mapContainer}>
-        <Map
-          items={items.filter((item) => item.distance <= selectedDistance)}
-        />
-      </div>
+      <Map items={items.filter((item) => item.distance <= selectedDistance)} />
     </div>
   );
 };

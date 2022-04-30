@@ -14,7 +14,7 @@ img {
   justify-content: space-between;
   align-items: center;
   background-color: $backgroundColorMain;
-  height: 12.5vh;
+  height: $navHeight;
   &
     > * {
     min-width: 20vw;
