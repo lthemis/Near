@@ -1,0 +1,96 @@
+@import "../../styles//variables/variables.scss";
+
+body {
+  -ms-overflow-style: none;
+  :-webkit-scrollbar {
+    display: none;
+}
+}
+.storeContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: calc(100vh - $navHeight);
+
+  .listContainer {
+    width: 50vw;
+    height: 100%;
+    overflow: hidden;
+ 
+
+    .listItemContainer{
+      overflow: scroll;
+      height: 80vh;
+      padding: 0;
+      // -ms-overflow-style: none;
+      // ::-webkit-scrollbar {
+        // display: none;
+    }
+
+    .filterAreaContainer{
+      border: 2px solid $brandColor;
+      border-radius: 10px;
+      width: 90%;
+      margin: 0 auto;
+
+
+      .filtersContainer {
+        margin: 1rem;
+        display: flex;
+        justify-content: space-around;
+
+        .rangeFilterContainer{
+          display: flex;
+          justify-content: center;
+        }
+        .checkboxContainer{
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      .checkboxContainer {
+        display: flex;
+        align-items: center;
+        & > * {
+          display: flex;
+          align-items: center; 
+        }
+      }
+      .searchBarContainer {
+        display: flex;
+        justify-content: center;
+        height: 2.5vh;
+        margin: 1rem;
+        justify-content: space-around;
+        input {
+          width: 80%;
+          font-family: $font;
+          padding: 1rem;
+          margin:0.5rem;
+          border-radius:10px;
+
+          &:focus, &:hover {
+            box-shadow:0px 0px 12px 2px rgba(253,101,132,0.53);
+          }
+        }
+        label {
+          line-height: 29px;
+          font-size: 1.2rem;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+}
+
+
+
+
+.checkboxLabel, .distanceLabel {
+  line-height: 29px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  font: $font;
+}

@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import { BrowserRouter } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
-import './styles/base/base.css'
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "./styles/base/base.scss";
 
 ReactDOM.render(
   <CookiesProvider>
@@ -15,7 +15,7 @@ ReactDOM.render(
       </React.StrictMode>
     </BrowserRouter>
   </CookiesProvider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
