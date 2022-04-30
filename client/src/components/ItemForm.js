@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { addItem } from "../services/ApiService";
 import { useAuth } from "../utils/auth";
-/// import profile css
+/// import
 
 export const ItemForm = (props) => {
   // export const ItemForm = ({setStoreRenderFlag, storeRenderFlag}) => {
