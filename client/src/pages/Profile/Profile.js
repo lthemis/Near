@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { ItemForm } from "../../components/ItemForm";
+import { ItemForm } from "../../components/ItemForm/ItemForm";
 import { getUser } from "../../services/ApiService";
 import { useAuth } from "../../utils/auth";
-import { Chart } from "../../components/Chart";
+import { Chart } from "../../components/Chart/Chart";
 import styles from "./Profile.module.scss";
 
 // export const Profile = ({setStoreRenderFlag, storeRenderFlag}) => {

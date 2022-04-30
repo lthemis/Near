@@ -8,7 +8,7 @@ import { Store } from "./pages/Store/Store";
 import { ItemDetails } from "./pages/ItemDetails/ItemDetails";
 import { Profile } from "./pages/Profile/Profile";
 import { AuthProvider } from "./utils/auth";
-import { RequireAuth } from "./components/RequireAuth";
+import { RequireAuth } from "./utils/RequireAuth";
 import { Home } from "./pages/Home/Home";
 
 const App = () => {

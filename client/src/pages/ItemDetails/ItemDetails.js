@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getItem } from "../../services/ApiService";
 // import { deleteItem, getItem } from "../../services/ApiService";
 // import { useAuth } from "../../utils/auth";
-import { MapComponent } from "../../components/MapComponent";
+import { Map } from "../../components/Map/Map";
 import styles from "./ItemDetails.module.scss";
 
 export const ItemDetails = () => {
@@ -51,7 +51,7 @@ export const ItemDetails = () => {
 
       {Object.keys(item).length !== 0 ? (
         <div className={styles.mapContainer}>
-          <MapComponent items={item} />
+          <Map items={item} />
         </div>
       ) : (
         <div />

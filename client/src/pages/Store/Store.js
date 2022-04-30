@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from "react";
 import { getItems, getUser } from "../../services/ApiService";
-import { Item } from "../../components/Item";
-import { MapComponent } from "../../components/MapComponent";
+import { Item } from "../../components/Item/Item";
+import { Map } from "../../components/Map/Map";
 import { useAuth } from "../../utils/auth";
 import styles from "./Store.module.scss";
 
@@ -139,7 +140,7 @@ export const Store = () => {
       </div>
 
       <div className={styles.mapContainer}>
-        <MapComponent
+        <Map
           items={items.filter((item) => item.distance <= selectedDistance)}
         />
       </div>

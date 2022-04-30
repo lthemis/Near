@@ -1,5 +1,5 @@
-// const BASE_URL = 'http://localhost:3000'
-const BASE_URL = "https://nearappber.herokuapp.com";
+const BASE_URL = "http://localhost:3000";
+// const BASE_URL = "https://nearappber.herokuapp.com";
 
 // const postConfig = {
 //   method: 'POST',

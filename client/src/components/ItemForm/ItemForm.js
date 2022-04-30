@@ -2,8 +2,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { addItem } from "../services/ApiService";
-import { useAuth } from "../utils/auth";
+import { addItem } from "../../services/ApiService";
+import { useAuth } from "../../utils/auth";
 /// import
 
 export const ItemForm = (props) => {

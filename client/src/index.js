@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import "./styles/base/base.css";
+import "./styles/base/base.scss";
 
 ReactDOM.render(
   <CookiesProvider>

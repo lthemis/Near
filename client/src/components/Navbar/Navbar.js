@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 import { NavLink } from "react-router-dom";
-import { Logout } from "../Logout";
+import { Logout } from "../Logout/Logout";
 import { useAuth } from "../../utils/auth";
 import styles from "./Navbar.module.scss";
 

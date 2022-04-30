@@ -1,13 +1,14 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
-import { getUser } from "../services/ApiService";
-import { useAuth } from "../utils/auth";
-import "./MapComponent.css";
-import { Tag } from "./Tag";
-import RoutingMachine from "./RoutingMachine";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { getUser } from "../../services/ApiService";
+import { useAuth } from "../../utils/auth";
+import styles from "./Map.module.scss";
+import { Tag } from "../Tag/Tag";
+import RoutingMachine from "../../utils/RoutingMachine";
 
-export const MapComponent = ({ items }) => {
+export const Map = ({ items }) => {
   const auth = useAuth();
   const [user, setUser] = useState({});
 
@@ -20,13 +21,11 @@ export const MapComponent = ({ items }) => {
       fetchData();
     }
   });
-
   return (
     <div>
-      {/* {console.log(user.location,items.location)} */}
       {Object.keys(user).length !== 0 ? (
         <MapContainer
-          className="mapContainer"
+          className={styles.mapContainer}
           center={[user.location.latitude, user.location.longitude]}
           zoom={12}
         >
