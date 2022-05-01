@@ -1,3 +1,6 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from "react";
@@ -6,50 +9,34 @@ import { Item } from "../../components/Item/Item";
 import { Map } from "../../components/Map/Map";
 import { useAuth } from "../../utils/auth";
 import styles from "./Store.module.scss";
-import { RangeSlider } from "../../components/RangeSlider/RangeSlider";
 import { Filter } from "../../components/Filter/Filter";
+import { calculateDistanceInMeters } from "../../utils/helpers";
 
 export const Store = () => {
   const [items, setItems] = useState([]);
   const [maxDistance, setMaxDistance] = useState(null);
   const [selectedDistance, setSelectedDistance] = useState(0);
   const auth = useAuth();
+  useEffect(() => {
+    setStates();
+  }, []);
 
-  const fetchItems = async () => {
-    const itemsFromDb = await getItems(); /// API CALL TO THE DB
-    const userId = auth.getUserFromSession();
-    const user = await getUser(userId);
-
-    const calculateDistanceInMeters = (userLocation, itemLocation) => {
-      const userLat = userLocation.latitude;
-      const userLon = userLocation.longitude;
-      const itemLat = itemLocation.latitude;
-      const itemLon = itemLocation.longitude;
-
-      // source: https://www.movable-type.co.uk/scripts/latlong.html
-      const R = 6371e3; // metres
-      const φ1 = (userLat * Math.PI) / 180; // φ, λ in radians
-      const φ2 = (itemLat * Math.PI) / 180;
-      const Δφ = ((itemLat - userLat) * Math.PI) / 180;
-      const Δλ = ((itemLon - userLon) * Math.PI) / 180;
-
-      const a =
-        Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-        Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-      const d = R * c; // in metres
-      return d;
-    };
-
-    const itemsWithDistance = itemsFromDb.map((item) => {
+  function getItemsWithDistance(items, user) {
+    return items.map((item) => {
       item.distance = calculateDistanceInMeters(user.location, item.location);
       return item;
     });
-    return itemsWithDistance;
-  };
+  }
 
-  const fetchMaxDistance = async (itemsWithDistance) => {
+  async function fetchItems() {
+    const itemsFromDb = await getItems();
+    const userId = auth.getUserFromSession();
+    const user = await getUser(userId);
+
+    return getItemsWithDistance(itemsFromDb, user);
+  }
+
+  async function getMaxDistance(itemsWithDistance) {
     let sortedItems;
     if (items.length > 1) {
       sortedItems = itemsWithDistance.sort((a, b) => {
@@ -59,18 +46,14 @@ export const Store = () => {
       sortedItems = itemsWithDistance;
     }
     return Math.ceil(sortedItems[0].distance);
-  };
+  }
 
-  const setStates = async () => {
-    const fetchedItems = await fetchItems();
-    const fetchedMaxDistance = await fetchMaxDistance(fetchedItems);
-    setItems(fetchedItems);
+  async function setStates() {
+    const items = await fetchItems();
+    const fetchedMaxDistance = await getMaxDistance(items);
+    setItems(items);
     setMaxDistance(fetchedMaxDistance);
-  };
-  useEffect(() => {
-    setStates();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }
 
   const handleDistanceFilter = (value) => {
     setSelectedDistance(Math.ceil(Number(value)));
