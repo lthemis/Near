@@ -6,10 +6,12 @@ import { Item } from "../../components/Item/Item";
 import { Map } from "../../components/Map/Map";
 import { useAuth } from "../../utils/auth";
 import styles from "./Store.module.scss";
+import { RangeSlider } from "../../components/RangeSlider/RangeSlider";
+import { Filter } from "../../components/Filter/Filter";
 
 export const Store = () => {
   const [items, setItems] = useState([]);
-  const [maxDistance, setMaxDistance] = useState(100);
+  const [maxDistance, setMaxDistance] = useState(null);
   const [selectedDistance, setSelectedDistance] = useState(0);
   const auth = useAuth();
 
@@ -70,61 +72,18 @@ export const Store = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleDistanceFilter = (e) => {
-    setSelectedDistance(Math.ceil(Number(e.target.value)));
+  const handleDistanceFilter = (value) => {
+    setSelectedDistance(Math.ceil(Number(value)));
   };
 
   return (
     <div className={styles.storeContainer}>
       <div className={styles.listContainer}>
-        <div className={styles.filterAreaContainer}>
-          <div className={styles.filtersContainer}>
-            <div className={styles.rangeFilterContainer}>
-              <label className={styles.distanceLabel} htmlFor="range">
-                Distance: {selectedDistance}
-              </label>
-              <input
-                onChange={handleDistanceFilter}
-                type="range"
-                id="range"
-                name="range"
-                min="100"
-                max={maxDistance}
-              />
-            </div>
-
-            <div className={styles.checkboxContainer}>
-              <div>
-                <label className={styles.checkboxLabel} htmlFor="Food">
-                  Food
-                </label>
-                <input type="checkbox" name="Food" />
-              </div>
-              <div>
-                <label className={styles.checkboxLabel} htmlFor="Furniture">
-                  Furniture
-                </label>
-                <input type="checkbox" name="Furniture" />
-              </div>
-              <div>
-                <label className={styles.checkboxLabel} htmlFor="Mobility">
-                  Mobility
-                </label>
-                <input type="checkbox" name="Mobility" />
-              </div>
-              <div>
-                <label className={styles.checkboxLabel} htmlFor="Other">
-                  Other
-                </label>
-                <input type="checkbox" name="Other" />
-              </div>
-            </div>
-          </div>
-          <div className={styles.searchBarContainer}>
-            <label htmlFor="search">Search</label>
-            <input name="search" type="text" />
-          </div>
-        </div>
+        <Filter
+          selectedDistance={selectedDistance}
+          maxDistance={maxDistance}
+          handleDistanceFilter={handleDistanceFilter}
+        />
 
         <div
           className={styles.listItemContainer}
