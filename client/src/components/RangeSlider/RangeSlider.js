@@ -9,8 +9,6 @@ export const RangeSlider = ({
   defaultValue,
   handleDistanceFilter,
 }) => {
-  console.log(defaultValue, max);
-  console.log("render");
   return (
     <div style={{ width: "100%" }}>
       <Slider

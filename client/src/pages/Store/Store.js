@@ -15,7 +15,8 @@ import { calculateDistanceInMeters } from "../../utils/helpers";
 export const Store = () => {
   const [items, setItems] = useState([]);
   const [maxDistance, setMaxDistance] = useState(null);
-  const [selectedDistance, setSelectedDistance] = useState(0);
+  const [selectedDistance, setSelectedDistance] = useState(null);
+  const [searchFilter, setSearchFilter] = useState(null);
   const auth = useAuth();
   useEffect(() => {
     setStates();
@@ -36,7 +37,7 @@ export const Store = () => {
     return getItemsWithDistance(itemsFromDb, user);
   }
 
-  async function getMaxDistance(itemsWithDistance) {
+  function getMaxDistance(itemsWithDistance) {
     let sortedItems;
     if (items.length > 1) {
       sortedItems = itemsWithDistance.sort((a, b) => {
@@ -50,13 +51,18 @@ export const Store = () => {
 
   async function setStates() {
     const items = await fetchItems();
-    const fetchedMaxDistance = await getMaxDistance(items);
+    const fetchedMaxDistance = getMaxDistance(items);
     setItems(items);
     setMaxDistance(fetchedMaxDistance);
+    if (selectedDistance === null) setSelectedDistance(fetchedMaxDistance / 2);
   }
 
   const handleDistanceFilter = (value) => {
     setSelectedDistance(Math.ceil(Number(value)));
+  };
+
+  const handleSearchFilter = (e) => {
+    setSearchFilter(e.target.value);
   };
 
   return (
@@ -66,6 +72,7 @@ export const Store = () => {
           selectedDistance={selectedDistance}
           maxDistance={maxDistance}
           handleDistanceFilter={handleDistanceFilter}
+          handleSearchFilter={handleSearchFilter}
         />
 
         <div
@@ -74,6 +81,14 @@ export const Store = () => {
         >
           {items
             .filter((item) => item.distance <= selectedDistance)
+            .filter((item) => {
+              if (searchFilter) {
+                return item.itemName.toLowerCase().includes(searchFilter)
+                  ? item
+                  : null;
+              }
+              return item;
+            })
             .map((item) => {
               // eslint-disable-next-line no-underscore-dangle
               return <Item key={item._id} item={item} />;

@@ -13,6 +13,7 @@ export const Filter = ({
   selectedDistance,
   maxDistance,
   handleDistanceFilter,
+  handleSearchFilter,
 }) => {
   return (
     <div className={styles.filterAreaContainer}>
@@ -23,7 +24,7 @@ export const Filter = ({
           </label>
           {maxDistance !== null ? (
             <RangeSlider
-              min={0}
+              min={1}
               max={maxDistance}
               defaultValue={maxDistance / 2}
               handleDistanceFilter={handleDistanceFilter}
@@ -39,7 +40,11 @@ export const Filter = ({
       </div>
       <div className={styles.searchBarContainer}>
         <label htmlFor="search">Search</label>
-        <input name="search" type="text" />
+        <input
+          name="search"
+          type="text"
+          onChange={(e) => handleSearchFilter(e)}
+        />
       </div>
     </div>
   );
