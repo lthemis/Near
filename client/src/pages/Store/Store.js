@@ -39,7 +39,7 @@ export const Store = () => {
 
   function getMaxDistance(itemsWithDistance) {
     let sortedItems;
-    if (items.length > 1) {
+    if (itemsWithDistance.length > 1) {
       sortedItems = itemsWithDistance.sort((a, b) => {
         return b.distance - a.distance;
       });
@@ -55,6 +55,22 @@ export const Store = () => {
     setItems(items);
     setMaxDistance(fetchedMaxDistance);
     if (selectedDistance === null) setSelectedDistance(fetchedMaxDistance / 2);
+  }
+
+  function getItemsToDisplay() {
+    return items.filter((item) => {
+      if (
+        searchFilter &&
+        item.itemName.toLowerCase().includes(searchFilter) &&
+        item.distance <= selectedDistance
+      ) {
+        return item;
+      }
+      if (!searchFilter && item.distance <= selectedDistance) {
+        return item;
+      }
+      return null;
+    });
   }
 
   const handleDistanceFilter = (value) => {
@@ -79,24 +95,14 @@ export const Store = () => {
           className={styles.listItemContainer}
           style={{ overflow: "scroll", height: "80vh" }}
         >
-          {items
-            .filter((item) => item.distance <= selectedDistance)
-            .filter((item) => {
-              if (searchFilter) {
-                return item.itemName.toLowerCase().includes(searchFilter)
-                  ? item
-                  : null;
-              }
-              return item;
-            })
-            .map((item) => {
-              // eslint-disable-next-line no-underscore-dangle
-              return <Item key={item._id} item={item} />;
-            })}
+          {getItemsToDisplay().map((item) => {
+            // eslint-disable-next-line no-underscore-dangle
+            return <Item key={item._id} item={item} />;
+          })}
         </div>
       </div>
 
-      <Map items={items.filter((item) => item.distance <= selectedDistance)} />
+      <Map items={getItemsToDisplay()} />
     </div>
   );
 };

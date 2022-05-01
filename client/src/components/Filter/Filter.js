@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
@@ -33,8 +34,8 @@ export const Filter = ({
         </div>
 
         <div className={styles.checkboxContainer}>
-          {checkboxes.map((type) => {
-            return <Checkbox key={uuidv4()} type={type} />;
+          {checkboxes.map((type, i) => {
+            return <Checkbox key={i} type={type} />;
           })}
         </div>
       </div>
