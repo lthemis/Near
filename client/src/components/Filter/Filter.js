@@ -15,6 +15,7 @@ export const Filter = ({
   maxDistance,
   handleDistanceFilter,
   handleSearchFilter,
+  setCheckboxFilter,
 }) => {
   return (
     <div className={styles.filterAreaContainer}>
@@ -35,7 +36,13 @@ export const Filter = ({
 
         <div className={styles.checkboxContainer}>
           {checkboxes.map((type, i) => {
-            return <Checkbox key={i} type={type} />;
+            return (
+              <Checkbox
+                key={i}
+                type={type}
+                setCheckboxFilter={setCheckboxFilter}
+              />
+            );
           })}
         </div>
       </div>

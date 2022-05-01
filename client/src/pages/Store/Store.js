@@ -17,6 +17,7 @@ export const Store = () => {
   const [maxDistance, setMaxDistance] = useState(null);
   const [selectedDistance, setSelectedDistance] = useState(null);
   const [searchFilter, setSearchFilter] = useState(null);
+  const [checkboxFilter, setCheckboxFilter] = useState([]);
   const auth = useAuth();
   useEffect(() => {
     setStates();
@@ -60,15 +61,12 @@ export const Store = () => {
   function getItemsToDisplay() {
     return items.filter((item) => {
       if (
-        searchFilter &&
-        item.itemName.toLowerCase().includes(searchFilter) &&
-        item.distance <= selectedDistance
-      ) {
+        item.distance <= selectedDistance &&
+        (item.itemName.toLowerCase().includes(searchFilter) || !searchFilter) &&
+        (checkboxFilter.some((elem) => elem === item.categories[0]) ||
+          checkboxFilter.length === 0)
+      )
         return item;
-      }
-      if (!searchFilter && item.distance <= selectedDistance) {
-        return item;
-      }
       return null;
     });
   }
@@ -89,6 +87,7 @@ export const Store = () => {
           maxDistance={maxDistance}
           handleDistanceFilter={handleDistanceFilter}
           handleSearchFilter={handleSearchFilter}
+          setCheckboxFilter={setCheckboxFilter}
         />
 
         <div
