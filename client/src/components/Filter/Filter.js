@@ -2,8 +2,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import styles from "./Filter.module.scss";
 import { RangeSlider } from "../RangeSlider/RangeSlider";
+import { Checkbox } from "../Checkbox/Checkbox";
+
+const checkboxes = ["Food", "Furniture", "Mobility", "Other"];
 
 export const Filter = ({
   selectedDistance,
@@ -28,30 +32,9 @@ export const Filter = ({
         </div>
 
         <div className={styles.checkboxContainer}>
-          <div>
-            <label className={styles.checkboxLabel} htmlFor="Food">
-              Food
-            </label>
-            <input type="checkbox" name="Food" />
-          </div>
-          <div>
-            <label className={styles.checkboxLabel} htmlFor="Furniture">
-              Furniture
-            </label>
-            <input type="checkbox" name="Furniture" />
-          </div>
-          <div>
-            <label className={styles.checkboxLabel} htmlFor="Mobility">
-              Mobility
-            </label>
-            <input type="checkbox" name="Mobility" />
-          </div>
-          <div>
-            <label className={styles.checkboxLabel} htmlFor="Other">
-              Other
-            </label>
-            <input type="checkbox" name="Other" />
-          </div>
+          {checkboxes.map((type) => {
+            return <Checkbox key={uuidv4()} type={type} />;
+          })}
         </div>
       </div>
       <div className={styles.searchBarContainer}>

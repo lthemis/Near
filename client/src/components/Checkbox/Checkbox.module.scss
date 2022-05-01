@@ -1,0 +1,9 @@
+@import "../../styles//variables/variables.scss";
+
+
+.checkboxLabel, .distanceLabel {
+  line-height: 29px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  font: $font;
+}
