@@ -59,9 +59,11 @@ export const Store = () => {
   }
 
   function getItemsToDisplay() {
+    const userId = auth.getUserFromSession();
     return items.filter((item) => {
       if (
         item.distance <= selectedDistance &&
+        item.sellerId !== userId &&
         (item.itemName.toLowerCase().includes(searchFilter) || !searchFilter) &&
         (checkboxFilter.some((elem) => elem === item.categories[0]) ||
           checkboxFilter.length === 0)
@@ -95,7 +97,6 @@ export const Store = () => {
           style={{ overflow: "scroll", height: "80vh" }}
         >
           {getItemsToDisplay().map((item) => {
-            // eslint-disable-next-line no-underscore-dangle
             return <Item key={item._id} item={item} />;
           })}
         </div>
