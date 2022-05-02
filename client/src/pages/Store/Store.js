@@ -102,7 +102,7 @@ export const Store = () => {
         </div>
       </div>
 
-      <Map items={getItemsToDisplay()} />
+      <Map selectedDistance={selectedDistance} items={getItemsToDisplay()} />
     </div>
   );
 };
