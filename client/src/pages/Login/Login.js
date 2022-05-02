@@ -2,6 +2,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../../components/Button/Button";
 import { loginUser } from "../../services/ApiService";
 import { useAuth } from "../../utils/auth";
 import styles from "./Login.module.scss";
@@ -23,7 +24,7 @@ export const Login = () => {
       password: data.password,
     };
 
-    const res = await loginUser(user); // set setate = if typeof res is error and return the user
+    const res = await loginUser(user);
     if (res._id) {
       auth.login(res._id);
       navigate("/store", { replace: true });
@@ -61,7 +62,7 @@ export const Login = () => {
         )}
       </label>
 
-      <button type="submit">Submit</button>
+      <Button />
     </form>
   );
 };

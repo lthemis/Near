@@ -1,0 +1,18 @@
+@import "../../styles/variables/variables.scss";
+
+.buttonMain {
+  background-color: $secondaryColor;
+  padding: 1rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  font-family: $font;
+  color: $primaryColor;
+  width: 15rem;
+  border-radius: 10px;
+  &:hover {
+    border: 2px solid $supportSecondaryColor;
+    & :active {
+      transform: scale(2);
+    }
+  }
+}

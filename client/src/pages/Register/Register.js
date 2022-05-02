@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { addUser } from "../../services/ApiService";
 import styles from "./Register.module.scss";
+import { Button } from "../../components/Button/Button";
+import { InputField } from "../../components/InputField/InputField";
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -47,105 +49,58 @@ export const Register = () => {
 
   return (
     <form className={styles.registerForm} onSubmit={handleSubmit(onSubmit)}>
-      {/* <div> */}
       <div className={styles.formInputContainer}>
-        <label htmlFor="username">
-          {" "}
-          Username:
-          <input
-            name="username"
-            placeholder="Username"
-            {...register("username", {
-              required: true,
-              minLength: 1,
-              maxLength: 30,
-            })}
-          />
-          {errors.username && (
-            <span className={styles.inputError}>Username required</span>
-          )}
-        </label>
+        <InputField
+          type="username"
+          errors={errors}
+          register={register("username", {
+            required: true,
+            minLength: 1,
+            maxLength: 30,
+          })}
+        />
 
-        <label htmlFor="email">
-          {" "}
-          Email:
-          <input
-            name="email"
-            placeholder="Email"
-            {...register("email", {
-              required: true,
-              pattern:
-                /^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/,
-            })}
-          />
-          {errors.email && (
-            <span className={styles.inputError}>incorrect format</span>
-          )}
-        </label>
+        <InputField
+          type="email"
+          errors={errors}
+          register={register("email", {
+            required: true,
+            pattern:
+              /^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/,
+          })}
+        />
 
-        <label htmlFor="password">
-          {" "}
-          Password:
-          <input
-            name="password"
-            placeholder="Password"
-            type="password"
-            {...register("password", {
-              required: true,
-              pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-            })}
-          />
-          {errors.password && (
-            <span className={styles.inputError}>
-              This field is required.
-              <br /> Minimum eight characters, at least one letter and one
-              number
-            </span>
-          )}
-        </label>
+        <InputField
+          type="password"
+          errors={errors}
+          register={register("password", {
+            required: true,
+            pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+          })}
+        />
 
-        <label htmlFor="country">
-          {" "}
-          Country:
-          <input
-            name="country"
-            placeholder="Country"
-            {...register("country")}
-          />
-        </label>
+        <InputField
+          type="country"
+          errors={errors}
+          register={register("country")}
+        />
       </div>
       <div className={styles.formInputContainer}>
-        <label htmlFor="city">
-          {" "}
-          City:
-          <input name="city" placeholder="City" {...register("city")} />
-        </label>
-
-        <label htmlFor="street">
-          {" "}
-          Street:
-          <input name="street" placeholder="Street" {...register("street")} />
-        </label>
-
-        <label htmlFor="homeNum">
-          {" "}
-          Home number:
-          <input
-            name="homeNum"
-            placeholder="Home number"
-            {...register("homeNum")}
-          />
-        </label>
-
-        <label htmlFor="zip">
-          {" "}
-          Zip:
-          <input name="zip" placeholder="Zip" {...register("zip")} />
-        </label>
+        <InputField type="city" errors={errors} register={register("city")} />
+        <InputField
+          type="street"
+          errors={errors}
+          register={register("street")}
+        />
+        <InputField
+          type="homeNum"
+          errors={errors}
+          register={register("homeNum")}
+        />
+        <InputField type="zip" errors={errors} register={register("zip")} />
       </div>
-      {/* </div> */}
       <div className={styles.btnRegister}>
-        <button type="submit">Submit</button>
+        <Button />
       </div>
     </form>
   );

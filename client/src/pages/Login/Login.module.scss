@@ -1,61 +1,5 @@
 @import "../../styles//variables/variables.scss";
-
-
-@mixin formStyle {
-  button {
-    background-color: $secondaryColor;
-    padding: 1rem;
-    margin: 1rem;
-    font-size: 1.5rem;
-    font-family: $font;
-    color: $primaryColor;
-    width: 15rem;
-    border-radius:10px;
-    &:hover {
-      border: 2px solid $supportSecondaryColor;
-      & :active {
-        transform: scale(2);
-      }
-    }
-  }
-
-  label {
-    font-weight: 700;
-    padding: 0.5rem;
-    color: $supportPrimaryColor;
-    display: flex;
-    flex-direction: column;
-    font-size: 1.1rem;
-  }
-  
-  .inputError {
-    font-size: 0.8rem;
-    color: $brandColor;
-  }
-
-  input {
-    font-family: $font;
-    width: 30vw;
-    padding: 1rem;
-    margin:0.5rem;
-    min-width: 20rem;
-    // border: 0.2rem solid 5px $supportPrimaryColor;
-    border-radius:10px;
-
-    &:focus, &:hover {
-      box-shadow:0px 0px 12px 2px rgba(253,101,132,0.53);
-    }
-  }
-}
-
-.registerForm {
-  margin-top: 10rem;
-  width: 100vw;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  @include formStyle;
-}
+@import "../../styles//mixins/mixins.scss";
 
 .loginForm {
   color: red;
@@ -64,15 +8,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  @include formStyle
-}
-
-.btnRegister {
-  flex-basis: 100%;
-  justify-content: center;
-  display: flex;
-}
-
-.newItemForm{
   @include formStyle;
 }
