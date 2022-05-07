@@ -8,6 +8,20 @@ const BASE_URL = "http://localhost:3000";
 //   headers: { 'Content-Type': 'application/json' },
 // }
 
+const parseFetch = (response) => {
+  if (response.status >= 200 && response.status <= 299) {
+    return response.json();
+  }
+  return response.json().then((res) => {
+    throw new Error(res.error);
+  });
+};
+
+const catchError = (error) => {
+  console.log("e", error);
+  return error.message;
+};
+
 export const addUser = (data) => {
   return fetch(`${BASE_URL}/addUser`, {
     method: "POST",
@@ -17,25 +31,21 @@ export const addUser = (data) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-  }).then((response) => {
-    if (response.status < 300) {
-      return response.json();
-    }
-    console.log("error", response.status);
-    return new Error(`There was an error`);
-  });
+  })
+    .then(parseFetch)
+    .then((response) => {
+      return response.data;
+    })
+    .catch(catchError);
 };
 
 export const getUser = (id) => {
   return fetch(`${BASE_URL}/getUser/${id}`)
+    .then(parseFetch)
     .then((response) => {
-      if (response.status < 300) {
-        return response.json();
-      }
-      console.log("error", response.status);
-      return new Error(`There was an error`);
+      return response.data;
     })
-    .catch((e) => console.log(e));
+    .catch(catchError);
 };
 
 export const loginUser = (data) => {
@@ -47,13 +57,12 @@ export const loginUser = (data) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-  }).then((response) => {
-    if (response.status < 300) {
-      return response.json();
-    }
-    console.log("error", response.status);
-    return new Error(`There was an error`);
-  });
+  })
+    .then(parseFetch)
+    .then((response) => {
+      return response.data;
+    })
+    .catch(catchError);
 };
 
 export const logoutUser = () => {
@@ -63,8 +72,11 @@ export const logoutUser = () => {
     mode: "cors",
     headers: { "Content-Type": "application/json" },
   })
-    .then((res) => res.json())
-    .catch((err) => console.log(err));
+    .then(parseFetch)
+    .then((response) => {
+      return response.data;
+    })
+    .catch(catchError);
 };
 
 export const addItem = (data) => {
@@ -76,43 +88,30 @@ export const addItem = (data) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-  }).then((response) => {
-    if (response.status < 300) {
-      return response.json();
-    }
-    console.log("error", response.status);
-    return new Error(`There was an error`);
-  });
+  })
+    .then(parseFetch)
+    .then((response) => {
+      return response.data;
+    })
+    .catch(catchError);
 };
 
 export const getItems = () => {
   return fetch(`${BASE_URL}/getItems`)
+    .then(parseFetch)
     .then((response) => {
-      if (response.status < 300) {
-        return response.json();
-      }
-      console.log("error", response.status);
-      return new Error(`There was an error`);
+      return response.data;
     })
-    .then((data) => {
-      console.log("datainfetch", data);
-      return data;
-    });
+    .catch(catchError);
 };
 
 export const getItem = (id) => {
   return fetch(`${BASE_URL}/getItem/${id}`)
+    .then(parseFetch)
     .then((response) => {
-      if (response.status < 300) {
-        return response.json();
-      }
-      console.log("error", response.status);
-      return new Error(`There was an error`);
+      return response.data;
     })
-    .then((data) => {
-      console.log("datainfetch", data);
-      return data;
-    });
+    .catch(catchError);
 };
 
 export const deleteItem = (itemId, buyerId) => {
@@ -125,12 +124,9 @@ export const deleteItem = (itemId, buyerId) => {
     },
     body: JSON.stringify({ itemId, buyerId }),
   })
+    .then(parseFetch)
     .then((response) => {
-      if (response.status < 300) {
-        return response.json();
-      }
-      console.log("error", response.status);
-      return new Error(`There was an error`);
+      return response.data;
     })
-    .catch((e) => console.log(e));
+    .catch(catchError);
 };

@@ -29,7 +29,7 @@ export const Login = () => {
       auth.login(res._id);
       navigate("/store", { replace: true });
     } else {
-      alert("Wrong email or password");
+      alert(res);
     }
   };
 
