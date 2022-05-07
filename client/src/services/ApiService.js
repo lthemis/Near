@@ -19,7 +19,7 @@ const parseFetch = (response) => {
 
 const catchError = (error) => {
   console.log("e", error);
-  return error.message;
+  return error;
 };
 
 export const addUser = (data) => {
