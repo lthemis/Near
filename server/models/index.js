@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 require('dotenv').config({path: __dirname + '/server/.env'});
 const db = process.env.DB
+// const db = process.env.DB_docker
+
 // mongoose.connect(`mongodb://localhost:27017/${db}`);
 mongoose.connect(db);
 
