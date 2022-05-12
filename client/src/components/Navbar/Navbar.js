@@ -1,12 +1,14 @@
 /* eslint-disable global-require */
 import { NavLink } from "react-router-dom";
-import { Logout } from "../Logout/Logout";
-import { useAuth } from "../../utils/auth";
+import { useAuth } from "../../hooks/useAuth";
 import styles from "./Navbar.module.scss";
+import { Button } from "../Button/Button";
 
 export const Navbar = () => {
   const auth = useAuth();
-
+  const clickHandler = () => {
+    auth.logout();
+  };
   const path = auth.checkIfAuthenticated() ? "store" : "/";
 
   return (
@@ -17,14 +19,22 @@ export const Navbar = () => {
 
       {auth.checkIfAuthenticated() ? (
         <div>
-          <NavLink to="/store">Store</NavLink>
-          <NavLink to="/profile">Profile</NavLink>
-          <Logout />
+          <NavLink to="/store">
+            <Button btnRole="Store" />
+          </NavLink>
+          <NavLink to="/profile">
+            <Button btnRole="Profile" />
+          </NavLink>
+          <Button btnRole="Logout" onClick={clickHandler} />
         </div>
       ) : (
         <div>
-          <NavLink to="login">Login</NavLink>
-          <NavLink to="register">Register</NavLink>
+          <NavLink to="login">
+            <Button btnRole="Login" />
+          </NavLink>
+          <NavLink to="register">
+            <Button btnRole="Register" />
+          </NavLink>
         </div>
       )}
     </nav>

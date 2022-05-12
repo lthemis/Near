@@ -2,3 +2,7 @@
 /server/node_modules
 /server/node_modules
 /client_copy
+mockItems.json
+mockUsers.json
+.DS_Store
+node_modules

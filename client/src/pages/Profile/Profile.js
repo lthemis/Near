@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { ItemForm } from "../../components/ItemForm/ItemForm";
 import { getUser } from "../../services/ApiService";
-import { useAuth } from "../../utils/auth";
+import { useAuth } from "../../hooks/useAuth";
 import { Chart } from "../../components/Chart/Chart";
 import styles from "./Profile.module.scss";
 
-// export const Profile = ({setStoreRenderFlag, storeRenderFlag}) => {
 export const Profile = ({ flag, setLastItem }) => {
   const auth = useAuth();
   const [user, setUser] = useState({});

@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import { Routes, Route } from "react-router-dom";
 import React, { useState } from "react";
 import { Navbar } from "./components/Navbar/Navbar";
@@ -7,7 +7,7 @@ import { Register } from "./pages/Register/Register";
 import { Store } from "./pages/Store/Store";
 import { ItemDetails } from "./pages/ItemDetails/ItemDetails";
 import { Profile } from "./pages/Profile/Profile";
-import { AuthProvider } from "./utils/auth";
+import { AuthProvider } from "./hooks/useAuth";
 import { RequireAuth } from "./utils/RequireAuth";
 import { Home } from "./pages/Home/Home";
 
@@ -20,14 +20,7 @@ const App = () => {
         <Navbar />
 
         <Routes>
-          {/* 
-          <Route path="home" element={<Home />} />  
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-        </Route> */}
-
           <Route path="/" element={<Home />} />
-          {/* <Route path="home" element={<Home />} />   */}
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
 

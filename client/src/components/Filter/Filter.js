@@ -1,9 +1,4 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 import styles from "./Filter.module.scss";
 import { RangeSlider } from "../RangeSlider/RangeSlider";
 import { Checkbox } from "../Checkbox/Checkbox";
@@ -35,10 +30,10 @@ export const Filter = ({
         </div>
 
         <div className={styles.checkboxContainer}>
-          {checkboxes.map((type, i) => {
+          {checkboxes.map((type) => {
             return (
               <Checkbox
-                key={i}
+                key={type}
                 type={type}
                 setCheckboxFilter={setCheckboxFilter}
               />

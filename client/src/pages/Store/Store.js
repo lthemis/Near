@@ -1,11 +1,7 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-undef */
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-use-before-define */
 import React, { useState, useEffect, useCallback } from "react";
 import { Item } from "../../components/Item/Item";
 import { Map } from "../../components/Map/Map";
-import { useAuth } from "../../utils/auth";
+import { useAuth } from "../../hooks/useAuth";
 import styles from "./Store.module.scss";
 import { Filter } from "../../components/Filter/Filter";
 import { calculateDistanceInMeters } from "../../utils/helpers";
@@ -44,8 +40,10 @@ export const Store = () => {
     function calculateMaxDistance(itemsWithDistance) {
       if (
         itemsWithDistance[0] &&
+        // eslint-disable-next-line no-prototype-builtins
         itemsWithDistance[0].hasOwnProperty("distance")
       ) {
+        // eslint-disable-next-line no-use-before-define
         return Math.ceil(sortItems(itemsWithDistance)[0].distance);
       }
       return null;
@@ -53,6 +51,7 @@ export const Store = () => {
     setMaxDistance(calculateMaxDistance(modifiedItems));
   }, [modifiedItems]);
 
+  // eslint-disable-next-line no-shadow
   function sortItems(items) {
     if (items.length > 1) {
       return items.sort((a, b) => {

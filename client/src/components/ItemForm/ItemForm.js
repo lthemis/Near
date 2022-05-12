@@ -1,16 +1,12 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { addItem } from "../../services/ApiService";
-import { useAuth } from "../../utils/auth";
-/// import
+import { useAuth } from "../../hooks/useAuth";
+import { InputField } from "../InputField/InputField";
+import styles from "./ItemForm.module.scss";
 
-export const ItemForm = (props) => {
-  console.log("itemForm");
-  // export const ItemForm = ({setStoreRenderFlag, storeRenderFlag}) => {
-
+export const ItemForm = ({ setLastItem }) => {
   const auth = useAuth();
   const navigate = useNavigate();
 
@@ -30,7 +26,6 @@ export const ItemForm = (props) => {
   });
 
   const onSubmit = async (data) => {
-    console.log("submit");
     const newItem = {
       itemName: data.itemName,
       itemDesc: data.itemDesc,
@@ -39,73 +34,61 @@ export const ItemForm = (props) => {
       sellerId: auth.getUserFromSession(),
       photoUrl: data.photoUrl,
     };
-    // eslint-disable-next-line react/destructuring-assignment
-    await addItem(newItem).then((res) => props.setLastItem(res));
-    // console.log("DDAADSADASDADA",itemItemFromDb);
+    await addItem(newItem).then((res) => setLastItem(res));
     reset();
-    // setStoreRenderFlag(!storeRenderFlag)
-    // props.setFlag(!props.flag)
-    // props.setLastItem(itemItemFromDb)
     navigate("/store", { replace: true });
   };
 
   return (
-    <div>
-      <form className="newItemForm" onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="item">Item</label>
-        <input
-          name="item"
-          placeholder="Item"
-          {...register("itemName", {
+    <section>
+      <form className={styles.addItemForm} onSubmit={handleSubmit(onSubmit)}>
+        <InputField
+          type="Item"
+          errors={errors}
+          register={register("itemName", {
             required: true,
             minLength: 1,
             maxLength: 30,
           })}
         />
-        {errors.itemName && (
-          <span>Item name required (between 1 and 30 characters)</span>
-        )}
-        <label htmlFor="itemDesc">Item description</label>
-        <input
-          name="itemDesc"
-          placeholder="Item description"
-          {...register("itemDesc", {
+        <InputField
+          type="Description"
+          errors={errors}
+          register={register("itemDesc", {
             required: true,
             minLength: 10,
             maxLength: 100,
           })}
         />
-        {errors.itemDesc && (
-          <span>Item description required (between 10 and 100 characters)</span>
-        )}
-        <label htmlFor="itemPrice">Price</label>
-        <input
-          name="itemPrice"
-          placeholder="Price"
-          {...register("itemPrice", { required: true })}
+        <InputField
+          type="price"
+          errors={errors}
+          register={register("itemPrice", { required: true })}
         />
-        {errors.itemPrice && (
-          <span>
-            This field is required. Minimum eight characters, at least one
-            letter and one number
-          </span>
-        )}
-        <label htmlFor="Photo">Photo url</label>
-        <input name="Photo" placeholder="Photo" {...register("photoUrl")} />
-        <label htmlFor="category">Category</label>
-        <select name="category" {...register("categories", { required: true })}>
-          <option disabled selected value>
-            {" "}
-            -- select an option --{" "}
-          </option>
-          <option value="Food">Food</option>
-          <option value="Furniture">Furniture</option>
-          <option value="Mobility">Mobility</option>
-          <option value="Other">Other</option>
-        </select>
+        <InputField
+          type="Photo url"
+          errors={errors}
+          register={register("photoUrl")}
+        />
+        <div>
+          <label htmlFor="category">Category</label>
+          <select
+            name="category"
+            {...register("categories", { required: true })}
+          >
+            <option disabled selected value>
+              {" "}
+              -- select an option --{" "}
+            </option>
+            <option value="Food">Food</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Mobility">Mobility</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
 
         <button type="submit">Add</button>
       </form>
-    </div>
+    </section>
   );
 };

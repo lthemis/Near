@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, Circle } from "react-leaflet";
+import { MapContainer, TileLayer, Circle } from "react-leaflet";
 import { getUser } from "../../services/ApiService";
-import { useAuth } from "../../utils/auth";
+import { useAuth } from "../../hooks/useAuth";
 import styles from "./Map.module.scss";
 import { Tag } from "../Tag/Tag";
 import RoutingMachine from "../../utils/RoutingMachine";
@@ -34,10 +32,12 @@ export const Map = ({ items, selectedDistance }) => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
-          <Circle
-            center={[user.location.latitude, user.location.longitude]}
-            radius={selectedDistance}
-          />
+          {selectedDistance && (
+            <Circle
+              center={[user.location.latitude, user.location.longitude]}
+              radius={selectedDistance}
+            />
+          )}
           {Array.isArray(items)
             ? items.map((item) => {
                 return <Tag key={item._id} item={item} />;

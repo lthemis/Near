@@ -42,7 +42,7 @@ export const Register = () => {
         expenses: 0,
       },
     };
-    addUser(user).then((response) => console.log("r", response)); // set setate = if typeof res is error and return the user
+    addUser(user);
     reset();
     navigate("/store", { replace: true });
   };

@@ -1,0 +1,9 @@
+@import "../../styles//variables/variables.scss";
+@import "../../styles//mixins/mixins.scss";
+
+.addItemForm {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  @include formStyle;
+}

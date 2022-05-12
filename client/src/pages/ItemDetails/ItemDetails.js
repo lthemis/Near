@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getItem, deleteItem } from "../../services/ApiService";
-import { useAuth } from "../../utils/auth";
+import { useAuth } from "../../hooks/useAuth";
 import { Map } from "../../components/Map/Map";
 import styles from "./ItemDetails.module.scss";
 

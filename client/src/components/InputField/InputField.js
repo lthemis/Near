@@ -58,6 +58,49 @@ export const InputField = ({ type, errors, register }) => {
     );
   }
 
+  if (errors && type === "item") {
+    return (
+      <label htmlFor={type}>
+        {" "}
+        {placeholder}:
+        <input name={type} placeholder={type} {...register} />
+        {errors.itemName && (
+          <span className={styles.inputError}>
+            Item name required (between 1 and 30 characters)
+          </span>
+        )}
+      </label>
+    );
+  }
+
+  if (errors && type === "description") {
+    return (
+      <label htmlFor={type}>
+        {" "}
+        {placeholder}:
+        <input name={type} placeholder={type} {...register} />
+        {errors.itemDesc && (
+          <span className={styles.inputError}>
+            Item description required (between 10 and 100 characters)
+          </span>
+        )}
+      </label>
+    );
+  }
+
+  if (errors && type === "price") {
+    return (
+      <label htmlFor={type}>
+        {" "}
+        {placeholder}:
+        <input name={type} placeholder={type} {...register} />
+        {errors.itemPrice && (
+          <span className={styles.inputError}>This field is required.</span>
+        )}
+      </label>
+    );
+  }
+
   return (
     <label htmlFor={type}>
       {" "}
