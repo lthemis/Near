@@ -8,8 +8,6 @@ import { useAuth } from "../../hooks/useAuth";
 import styles from "./Login.module.scss";
 
 export const Login = () => {
-  console.log("LOGIN COMPONENT");
-
   const {
     register,
     handleSubmit,

@@ -1,11 +1,14 @@
+/* eslint-disable no-unused-vars */
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { addUser } from "../../services/ApiService";
 import styles from "./Register.module.scss";
 import { Button } from "../../components/Button/Button";
 import { InputField } from "../../components/InputField/InputField";
+import { useHtml } from "../../hooks/useHtml";
 
 export const Register = () => {
+  const { sendRequest } = useHtml();
+
   const navigate = useNavigate();
   const {
     register,
@@ -42,7 +45,14 @@ export const Register = () => {
         expenses: 0,
       },
     };
-    addUser(user);
+    sendRequest({
+      route: "/addUser",
+      body: user,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
     reset();
     navigate("/store", { replace: true });
   };

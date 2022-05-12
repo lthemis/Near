@@ -19,12 +19,6 @@ export const Home = () => {
             Trade with your neighbours and support local community!
           </h1>
         </div>
-        <div>
-          <h2 className={styles.subHeading}>
-            Buy and sell from people living nearby! Collect effortlessly,
-            without commute or waiting for a courier!{" "}
-          </h2>
-        </div>
       </div>
     </section>
   );

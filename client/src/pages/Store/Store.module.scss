@@ -4,47 +4,49 @@ body {
   -ms-overflow-style: none;
   :-webkit-scrollbar {
     display: none;
-}
+  }
 }
 .storeContainer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: calc(100vh - $navHeight);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: calc(100vh - $navHeight);
 
   .listContainer {
     width: 50vw;
     height: 100%;
     overflow: hidden;
- 
 
-    .listItemContainer{
+    .listItemContainer {
       overflow: scroll;
       height: 80vh;
-      padding: 0;
-      // -ms-overflow-style: none;
-      // ::-webkit-scrollbar {
-        // display: none;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -ms-overflow-style: none;
+      ::-webkit-scrollbar {
+        display: none;
+      }
     }
 
-    .filterAreaContainer{
+    .filterAreaContainer {
       border: 2px solid $brandColor;
       border-radius: 10px;
       width: 90%;
       margin: 0 auto;
-
 
       .filtersContainer {
         margin: 1rem;
         display: flex;
         justify-content: space-around;
 
-        .rangeFilterContainer{
+        .rangeFilterContainer {
           display: flex;
           justify-content: center;
           width: 100%;
         }
-        .checkboxContainer{
+        .checkboxContainer {
           display: flex;
           justify-content: center;
         }
@@ -55,7 +57,7 @@ body {
         align-items: center;
         & > * {
           display: flex;
-          align-items: center; 
+          align-items: center;
         }
       }
       .searchBarContainer {
@@ -68,11 +70,12 @@ body {
           width: 80%;
           font-family: $font;
           padding: 1rem;
-          margin:0.5rem;
-          border-radius:10px;
+          margin: 0.5rem;
+          border-radius: 10px;
 
-          &:focus, &:hover {
-            box-shadow:0px 0px 12px 2px rgba(253,101,132,0.53);
+          &:focus,
+          &:hover {
+            box-shadow: 0px 0px 12px 2px rgba(253, 101, 132, 0.53);
           }
         }
         label {
@@ -83,13 +86,10 @@ body {
       }
     }
   }
-
 }
 
-
-
-
-.checkboxLabel, .distanceLabel {
+.checkboxLabel,
+.distanceLabel {
   line-height: 29px;
   font-size: 1.2rem;
   font-weight: 400;

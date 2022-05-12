@@ -3,30 +3,18 @@
 <p align="center">
   <img src="client/src/assets/cover.png" width="200"/>
 </p>
-Near! is an E-commerce solution providing a flawless proximity-based shopping experience. It enables users to shop with and support local community by buing and selling items based on distance between their current locationa and the location of the selected item.
-
-## Screenshots
-
-<p align="center">
-  <img src="" alt="appPhoto" />
-</p>
+Near! is an E-commerce solution enabling proximity-based shopping experience. It enables users to shop with and support local community by buying and selling items based on distance between their current location and the location of the selected item.
 
 ## Getting Started
 
-1. Clone this repo.
-
-    ```bash
-    git clone https://github.com/lthemis/Near
-    ```
-
-2. Install dependencies in both client and server folders.
+1. Install dependencies in both client and server folders.
 
     ```bash
     npm install
     ```
-3. Create accounts and obtain your personal API keys from [Positionstack](https://positionstack.com/) and [Mapquest](https://developer.mapquest.com/documentation/).
+2. Create accounts and obtain your personal API keys from [Positionstack](https://positionstack.com/) and [Mapquest](https://developer.mapquest.com/documentation/).
    
-4. Create .env file in server folder.
+3. Create .env file in server folder.
 
     ```bash
     PORT=3000
@@ -37,16 +25,16 @@ Near! is an E-commerce solution providing a flawless proximity-based shopping ex
     ```
 
 
-5. Install the [Mongo](https://www.mongodb.com/docs/manual/installation/) database on your machine.
+4. Install the [Mongo](https://www.mongodb.com/docs/manual/installation/) database on your machine.
 
 
-6. Start the server. From the server folder, run
+5. Start the server. From the server folder, run
 
     ```bash
     nodemon index.js
     ```
 
-7. Start the client. From the client folder, run
+6. Start the client. From the client folder, run
 
     ```bash
     npm start

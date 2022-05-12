@@ -1,13 +1,6 @@
 const BASE_URL = "http://localhost:3000";
 // const BASE_URL = "https://nearappber.herokuapp.com";
 
-// const postConfig = {
-//   method: 'POST',
-//   // credentials: 'include',
-//   mode: 'cors',
-//   headers: { 'Content-Type': 'application/json' },
-// }
-
 const parseFetch = (response) => {
   if (response.status >= 200 && response.status <= 299) {
     return response.json();
@@ -52,7 +45,7 @@ export const loginUser = (data) => {
   return fetch(`${BASE_URL}/login`, {
     method: "POST",
     mode: "cors",
-    // credentials: 'include',
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -68,7 +61,7 @@ export const loginUser = (data) => {
 export const logoutUser = () => {
   return fetch(`${BASE_URL}/logout`, {
     method: "POST",
-    // credentials: 'include',
+    credentials: "include",
     mode: "cors",
     headers: { "Content-Type": "application/json" },
   })
@@ -83,7 +76,7 @@ export const addItem = (data) => {
   return fetch(`${BASE_URL}/addItem`, {
     method: "POST",
     mode: "cors",
-    // credentials: 'include',
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -118,7 +111,7 @@ export const deleteItem = (itemId, buyerId) => {
   return fetch(`${BASE_URL}/deleteItem`, {
     method: "DELETE",
     mode: "cors",
-    // credentials: 'include',
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },

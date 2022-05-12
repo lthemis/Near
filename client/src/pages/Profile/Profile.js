@@ -1,23 +1,20 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { ItemForm } from "../../components/ItemForm/ItemForm";
-import { getUser } from "../../services/ApiService";
 import { useAuth } from "../../hooks/useAuth";
 import { Chart } from "../../components/Chart/Chart";
 import styles from "./Profile.module.scss";
+import { useHtml } from "../../hooks/useHtml";
 
 export const Profile = ({ flag, setLastItem }) => {
   const auth = useAuth();
   const [user, setUser] = useState({});
+  const { isLoading, error, sendRequest } = useHtml();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await getUser(auth.getUserFromSession());
-      setUser(result);
-    };
-    if (Object.keys(user).length === 0) {
-      fetchData();
-    }
-  });
+    const usedId = auth.getUserFromSession();
+    sendRequest({ route: `/getUser/${usedId}` }, setUser);
+  }, [sendRequest, auth]);
 
   return (
     <div className={styles.container}>
@@ -26,6 +23,7 @@ export const Profile = ({ flag, setLastItem }) => {
           <div className={styles.textContainer}>
             <h1 className={styles.headerSell}>
               Welcome <span className={styles.detail}>{user.userName}</span>!
+              <br />
               Time to sell something? <br /> Do it here!
             </h1>
 
