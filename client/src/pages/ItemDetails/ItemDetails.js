@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getItem } from "../../services/ApiService";
-// import { deleteItem, getItem } from "../../services/ApiService";
-// import { useAuth } from "../../utils/auth";
+import { getItem, deleteItem } from "../../services/ApiService";
+import { useAuth } from "../../hooks/useAuth";
 import { Map } from "../../components/Map/Map";
 import styles from "./ItemDetails.module.scss";
 
 export const ItemDetails = () => {
   const [item, setItem] = useState({});
   const { itemId } = useParams();
-  // const auth = useAuth();
+  const auth = useAuth();
   const navigate = useNavigate();
-  // const userId = auth.getUserFromSession();
+  const userId = auth.getUserFromSession();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,7 +22,7 @@ export const ItemDetails = () => {
   }, []);
 
   const clickHandler = async () => {
-    // const result = await deleteItem(itemId, userId);
+    await deleteItem(itemId, userId);
     navigate("/store", { replace: true });
   };
 

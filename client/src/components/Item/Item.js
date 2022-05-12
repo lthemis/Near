@@ -16,9 +16,7 @@ export const Item = (props) => {
       </div>
 
       <div className={styles.textContainer}>
-        <h1 className={styles.itemHeader}>
-          Item: <span className={styles.descDetail}>{item.itemName}</span>
-        </h1>
+        <p className={styles.itemHeader}>{item.itemName}</p>
         <p>
           Price: <span className={styles.descDetail}>{item.itemPrice}</span>
         </p>
@@ -27,7 +25,7 @@ export const Item = (props) => {
         </p>
       </div>
       <Link className={styles.itemBtn} to={`/store/${item._id}`}>
-        See more
+        <p>See more</p>
       </Link>
     </div>
   );

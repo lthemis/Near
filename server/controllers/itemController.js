@@ -13,11 +13,15 @@ async function addItem (req, res) {
     item.location = {latitude: latitude, longitude:longitude}
 
     const result = await ItemModel.create(item);
-    res.status(201).send(result)
-
-  } catch(e) {
-    console.log(e);
-    res.status(500).end()
+    res
+      .status(201)
+      .send({data: result})
+      .end()
+  } catch (e) {
+    res
+      .status(500)
+      .send({error: e})
+      .end()
   }
 }
 
@@ -25,10 +29,15 @@ async function getItem(req, res) {
   try {
     const itemId = req.params.id;
     const result = await ItemModel.findById(itemId);
-    res.status(200).send(result)
+    res
+      .status(200)
+      .send({data: result})
+      .end()
   } catch (e) {
-    console.log(e);
-    res.status(500).end()
+    res
+      .status(500)
+      .send({error: e})
+      .end()
   }
 }
 
@@ -37,20 +46,20 @@ async function modifyItem(req, res){
     const itemId= req.params.id;
     const newItem = req.body;
     const result = await ItemModel.findByIdAndUpdate(itemId, newItem);
-    console.log(result);
-    res.status(200).end()
+    res
+      .status(200)
+      .end()
   } catch (e) {
-    console.log(e);
-    res.status(500).end()
+    res
+      .status(500)
+      .send({error: e})
+      .end()
   }
 }
 
 async function deleteItem(req, res){
-  console.log('reached controller - delete');
   try {
     const {itemId, buyerId} = req.body;
-    console.log('BE',itemId, buyerId);
-
     const itemData = await ItemModel.findById(itemId);
     const seller = await UserModel.findById(itemData.sellerId);
     const buyer = await UserModel.findById(buyerId);
@@ -60,19 +69,30 @@ async function deleteItem(req, res){
     await UserModel.findByIdAndUpdate(buyer._id, {wallet:buyer.wallet})
     const removedItem = await ItemModel.findByIdAndDelete(itemId)
     
-    res.status(200).send(removedItem)
+    res
+      .status(200)
+      .send({data: removedItem})
+      .end()
   } catch (e) {
-    console.log(e);
-    res.status(500).send({error: e})
+    res
+      .status(500)
+      .send({error: e})
+      .end()
   }
 }
 
 async function getItems(req, res){
   try{
     const result = await ItemModel.find({})
-    res.status(200).send(result);
+    res
+      .status(200)
+      .send({data: result})
+      .end();
   } catch (e) {
-    console.log(e);
+    res
+      .status(500)
+      .send({error: e})
+      .end()
   }
 };
 

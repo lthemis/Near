@@ -21,6 +21,22 @@ module.exports = {
     "import/prefer-default-export": "off",
     "no-param-reassign": "off",
     "no-underscore-dangle": "off",
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        required: {
+          some: ["nesting", "id"],
+        },
+      },
+    ],
+    "jsx-a11y/label-has-for": [
+      "error",
+      {
+        required: {
+          some: ["nesting", "id"],
+        },
+      },
+    ],
     "import/extensions": [
       "error",
       "ignorePackages",
