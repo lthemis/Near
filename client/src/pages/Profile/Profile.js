@@ -5,16 +5,22 @@ import { useAuth } from "../../hooks/useAuth";
 import { Chart } from "../../components/Chart/Chart";
 import styles from "./Profile.module.scss";
 import { useHtml } from "../../hooks/useHtml";
+import { getUser } from "../../services/ApiService";
 
 export const Profile = ({ flag, setLastItem }) => {
   const auth = useAuth();
   const [user, setUser] = useState({});
-  const { isLoading, error, sendRequest } = useHtml();
+  // const { isLoading, error, sendRequest } = useHtml();
 
+  async function getUserHttpRequest(userId) {
+    const data = await getUser(userId);
+    return data;
+  }
   useEffect(() => {
-    const usedId = auth.getUserFromSession();
-    sendRequest({ route: `/getUser/${usedId}` }, setUser);
-  }, [sendRequest, auth]);
+    const userId = auth.getUserFromSession();
+    setUser(getUserHttpRequest(userId));
+    // sendRequest({ route: `/getUser/${usedId}` }, setUser);
+  }, [auth]);
 
   return (
     <div className={styles.container}>

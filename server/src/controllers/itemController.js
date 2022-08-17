@@ -8,7 +8,6 @@ async function addItem (req, res) {
     const userId = req.body.sellerId
     const user = await UserModel.findById(userId);
 
-    console.log('itemControler', req.body, console.log('user', user));
     const {latitude, longitude} = await forwardGeocoding(user.address);
     item.location = {latitude: latitude, longitude:longitude}
 

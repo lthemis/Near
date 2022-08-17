@@ -1,5 +1,7 @@
-const BASE_URL = "http://localhost:3000";
-// const BASE_URL = "https://nearappber.herokuapp.com";
+const BASE_URL =
+  process.env.REACT_APP_BASE_URL !== undefined
+    ? process.env.REACT_APP_BASE_URL
+    : "http://localhost:8000";
 
 const parseFetch = (response) => {
   if (response.status >= 200 && response.status <= 299) {
@@ -16,6 +18,7 @@ const catchError = (error) => {
 };
 
 export const addUser = (data) => {
+  console.log("FE", data);
   return fetch(`${BASE_URL}/addUser`, {
     method: "POST",
     mode: "cors",
@@ -42,6 +45,9 @@ export const getUser = (id) => {
 };
 
 export const loginUser = (data) => {
+  console.log("user");
+  console.log(BASE_URL);
+
   return fetch(`${BASE_URL}/login`, {
     method: "POST",
     mode: "cors",

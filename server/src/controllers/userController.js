@@ -1,12 +1,13 @@
 const {UserModel} = require('../models/shop');
 const { forwardGeocoding } = require('../services/geocodingApi');
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 
 
  const addUser = async (req, res) => {
   try {
+    console.log('BE', req.body);
     const user = req.body;
     const userCheck = await UserModel.findOne({ email: user.email });
     if (userCheck)
@@ -14,18 +15,16 @@ const saltRounds = 10;
         .status(409)
         .send({ error: 'User already exists' })
         .end();
-
     const {latitude, longitude} = await forwardGeocoding(user.address);
     user.location = {latitude: latitude, longitude:longitude}
     
-    const hashedPassword = await bcrypt.hash(user.password, saltRounds)
+    const salt = bcrypt.genSaltSync(saltRounds)
+    const hashedPassword = await bcrypt.hash(user.password, salt)
     const userEncrypted = {
       ...user, password: hashedPassword
     }
     const result = await UserModel.create(userEncrypted)
     req.session.uid = result._id;
-    // res.header("Access-Control-Allow-Origin", "http://localhost:3001");
-    // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res
       .status(201)
       .send({data: result})
@@ -92,9 +91,11 @@ const getUser = async (req, res) => {
 
 const login = async (req, res) => {
   try {
+  console.log('user');
+
     const { email, password } = req.body;
     const user = await UserModel.findOne({email: email});
-    const validatedPass = await bcrypt.compare(password, user.password)
+    const validatedPass = await bcrypt.compareSync(password, user.password)
     if (!validatedPass) throw new Error()
     req.session.uid = user._id;
     res

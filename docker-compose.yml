@@ -1,0 +1,52 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - near-network
+    volumes:
+      - ./client/src:/usr/app/src
+      - ./client/public:/usr/app/public
+    depends_on:
+      - server
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start
+    stdin_open: true
+    tty: true
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - near-network
+    volumes:
+      - ./server/src:/usr/app/src
+    depends_on:
+      - db
+    environment:
+      - DB_MONGO_HOST=mongodb://db:27017/near
+      - PORT=8000
+    command: npm start
+  db:
+    image: mongo
+    ports: 
+     - 27017:27017
+    networks:
+      - near-network
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  near-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local

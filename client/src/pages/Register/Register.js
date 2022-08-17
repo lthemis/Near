@@ -5,6 +5,7 @@ import styles from "./Register.module.scss";
 import { Button } from "../../components/Button/Button";
 import { InputField } from "../../components/InputField/InputField";
 import { useHtml } from "../../hooks/useHtml";
+import { addUser } from "../../services/ApiService";
 
 export const Register = () => {
   const { sendRequest } = useHtml();
@@ -45,14 +46,15 @@ export const Register = () => {
         expenses: 0,
       },
     };
-    sendRequest({
-      route: "/addUser",
-      body: user,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    });
+    // sendRequest({
+    //   route: "/addUser",
+    //   body: user,
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   method: "POST",
+    // });
+    addUser(user);
     reset();
     navigate("/store", { replace: true });
   };
