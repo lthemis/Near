@@ -1,28 +1,32 @@
 @import "../../styles//variables/variables.scss";
 
-
-.profileContainer {
-  width: 100vw;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top:5rem;
-  .chartContainer {
-    width: 40%;
-
-  }
-  .textContainer {
-    width: 40%;
+.container {
+  height: calc(100vh - 12.5vh);
+  .profileContainer {
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .chartContainer {
+      width: 40%;
+    }
+    .textContainer {
+      width: 40%;
+    }
   }
 }
 
-.headerSell{
+.headerSell {
   font-size: 2rem;
   font-family: $font;
   font-weight: 600;
   color: $supportPrimaryColor;
 }
 
-.detail{
+.detail {
   color: $brandColor;
+}
+.itemActionContainer {
+  height: 100%;
 }

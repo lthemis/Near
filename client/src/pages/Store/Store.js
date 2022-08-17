@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useCallback } from "react";
 import { Item } from "../../components/Item/Item";
 import { Map } from "../../components/Map/Map";
@@ -6,23 +7,44 @@ import styles from "./Store.module.scss";
 import { Filter } from "../../components/Filter/Filter";
 import { calculateDistanceInMeters } from "../../utils/helpers";
 import { useHtml } from "../../hooks/useHtml";
+import { ListItemContainer } from "../../components/ListItemContainer/ListItemContainer";
+import { getItems, getUser } from "../../services/ApiService";
 
 export const Store = () => {
   const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [modifiedItems, setModifiedItems] = useState([]);
   const [maxDistance, setMaxDistance] = useState(null);
   const [selectedDistance, setSelectedDistance] = useState(null);
   const [searchFilter, setSearchFilter] = useState(null);
   const [checkboxFilter, setCheckboxFilter] = useState([]);
   const auth = useAuth();
-  const { isLoading, error, sendRequest } = useHtml();
+  // const { isLoading, error, sendRequest } = useHtml();
   const getUserIdFromSession = useCallback(() => {
     return auth.getUserFromSession();
   }, [auth]);
 
+  // const fetchData = async () => {
+  //   const items = await getItems();
+  //   setItems(items);
+  // };
+  // if (Object.keys(user).length === 0) {
+  //   fetchData();
+  // }
+
   useEffect(() => {
-    sendRequest({ route: "/getItems" }, setItems);
-  }, [sendRequest]);
+    const fetchData = async () => {
+      setIsLoading(true);
+      const response = await getItems();
+      setItems(response);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  // useEffect(() => {
+  //   sendRequest({ route: "/getItems" }, setItems);
+  // }, [sendRequest]);
 
   useEffect(() => {
     const userId = getUserIdFromSession();
@@ -33,8 +55,32 @@ export const Store = () => {
       });
       setModifiedItems(itemsWithDistance);
     };
-    sendRequest({ route: `/getUser/${userId}` }, transformItems);
-  }, [getUserIdFromSession, items, sendRequest]);
+    const fetchData = async () => {
+      setIsLoading(true);
+      const response = await getUser(userId);
+      transformItems(response);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, [getUserIdFromSession, items]);
+
+  // useEffect(() => {
+  //   const userId = getUserIdFromSession();
+  //   const transformItems = (user) => {
+  //     const itemsWithDistance = items.map((item) => {
+  //       item.distance = calculateDistanceInMeters(user.location, item.location);
+  //       return item;
+  //     });
+  //     setModifiedItems(itemsWithDistance);
+  //   };
+  //   const fetchData = async () => {
+  //     const response = await getUser(userId);
+  //     console.log(response);
+  //     transformItems(response);
+  //   };
+  //   fetchData();
+  //   sendRequest({ route: `/getUser/${userId}` }, transformItems);
+  // }, [getUserIdFromSession, items, sendRequest]);
 
   useEffect(() => {
     function calculateMaxDistance(itemsWithDistance) {
@@ -62,6 +108,7 @@ export const Store = () => {
   }
 
   function getItemsToDisplay() {
+    console.log(modifiedItems);
     const userId = getUserIdFromSession();
     return modifiedItems.filter((item) => {
       if (
@@ -98,7 +145,11 @@ export const Store = () => {
           handleSearchFilter={handleSearchFilter}
           setCheckboxFilter={setCheckboxFilter}
         />
+        {/* {!isLoading && ( */}
         {!isLoading && (
+          <ListItemContainer itemsToDisplay={getItemsToDisplay()} />
+        )}
+        {/* {!isLoading && (
           <div
             className={styles.listItemContainer}
             style={{ overflow: "scroll", height: "80vh" }}
@@ -107,9 +158,9 @@ export const Store = () => {
               return <Item key={item._id} item={item} />;
             })}
           </div>
-        )}
-        {isLoading && !error && <p>Loading</p>}
-        {error && <p>{error.message}</p>}
+        )} */}
+        {/* {isLoading && !error && <p>Loading</p>} */}
+        {/* {error && <p>{error.message}</p>} */}
       </div>
 
       <Map

@@ -1,0 +1,12 @@
+.listItemContainer {
+  overflow: scroll;
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}

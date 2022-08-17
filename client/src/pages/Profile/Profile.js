@@ -5,10 +5,13 @@ import { useAuth } from "../../hooks/useAuth";
 import { Chart } from "../../components/Chart/Chart";
 import styles from "./Profile.module.scss";
 import { getUser } from "../../services/ApiService";
+import { Button } from "../../components/Button/Button";
 
 export const Profile = ({ flag, setLastItem }) => {
   const auth = useAuth();
   const [user, setUser] = useState({});
+  const [itemAction, setItemAction] = useState("sell");
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await getUser(auth.getUserFromSession());
@@ -26,11 +29,22 @@ export const Profile = ({ flag, setLastItem }) => {
           <div className={styles.textContainer}>
             <h1 className={styles.headerSell}>
               Welcome <span className={styles.detail}>{user.userName}</span>!
-              <br />
-              Time to sell something? <br /> Do it here!
             </h1>
-
-            <ItemForm flag={flag} setLastItem={setLastItem} />
+            <div className={styles.btnContainer}>
+              <Button
+                btnRole="Sell an item"
+                onClick={() => setItemAction("sell")}
+              />
+              <Button
+                btnRole="See your items"
+                onClick={() => setItemAction("display")}
+              />
+            </div>
+            <div className={styles.itemActionContainer}>
+              {itemAction === "sell" ? (
+                <ItemForm flag={flag} setLastItem={setLastItem} />
+              ) : null}
+            </div>
           </div>
           <div className={styles.chartContainer}>
             <Chart
