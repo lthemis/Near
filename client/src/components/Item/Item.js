@@ -2,9 +2,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Item.module.scss";
+import { Button } from "../Button/Button";
 
 export const Item = (props) => {
-  const { item } = props;
+  const { item, cancelFlag } = props;
   return (
     <div className={styles.itemContainer}>
       <div className={styles.photoContainer}>
@@ -24,9 +25,13 @@ export const Item = (props) => {
           Category: <span className={styles.descDetail}>{item.categories}</span>
         </p>
       </div>
-      <Link className={styles.itemBtn} to={`/store/${item._id}`}>
-        <p>See more</p>
-      </Link>
+      {cancelFlag ? (
+        <Button btnRole="Cancel sale" />
+      ) : (
+        <Link className={styles.itemBtn} to={`/store/${item._id}`}>
+          <p>See more</p>
+        </Link>
+      )}
     </div>
   );
 };

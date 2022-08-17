@@ -4,13 +4,16 @@ import { ItemForm } from "../../components/ItemForm/ItemForm";
 import { useAuth } from "../../hooks/useAuth";
 import { Chart } from "../../components/Chart/Chart";
 import styles from "./Profile.module.scss";
-import { getUser } from "../../services/ApiService";
+import { getItem, getUser, getItems } from "../../services/ApiService";
 import { Button } from "../../components/Button/Button";
+import { ListItemContainer } from "../../components/ListItemContainer/ListItemContainer";
 
 export const Profile = ({ flag, setLastItem }) => {
   const auth = useAuth();
   const [user, setUser] = useState({});
   const [itemAction, setItemAction] = useState("sell");
+  const [isLoading, setIsLoading] = useState(false);
+  const [items, setItems] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +24,16 @@ export const Profile = ({ flag, setLastItem }) => {
       fetchData();
     }
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      const response = await getItems();
+      setItems(response);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -43,7 +56,12 @@ export const Profile = ({ flag, setLastItem }) => {
             <div className={styles.itemActionContainer}>
               {itemAction === "sell" ? (
                 <ItemForm flag={flag} setLastItem={setLastItem} />
-              ) : null}
+              ) : (
+                <ListItemContainer
+                  itemsToDisplay={items.filter((i) => i.sellerId === user._id)}
+                  cancelFlag
+                />
+              )}
             </div>
           </div>
           <div className={styles.chartContainer}>
